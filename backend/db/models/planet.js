@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Planet.hasMany(models.Booking, {foreignKey: 'planet_id'})
     Planet.hasMany(models.Review, {foreignKey: 'planet_id'})
-    Planet.belongsTo(model.User, {foreignKey: 'user_id'})
-    Planet.belongsTo(model.Solar_System, {foreignKey: 'solar_system_id'})
+    Planet.belongsTo(models.User, {foreignKey: 'user_id'})
+    Planet.belongsTo(models.Solar_System, {foreignKey: 'solar_system_id'})
   };
   return Planet;
 };
