@@ -2,11 +2,15 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from './session';
 import planetReducer from './planets';
+import userReducer from "./users";
+import solarSystemReducer from "./solarSystems";
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  planets: planetReducer
+  planets: planetReducer,
+  users: userReducer,
+  solarSystems: solarSystemReducer
 });
 
 let enhancer;
