@@ -14,15 +14,15 @@ export default function Planet({planets, users, solarSystems, reviews}){
     let reviewAndUsers = []
     let counter = 0
     planetReviews.forEach(review => {
-        let reviewArr = {}
+        let reviewObj = {}
         let description = review.description
-        reviewArr.description = description
+        reviewObj.description = description
         let user = users.find(user => +user.id === +review.user_id)
         let username = user.username
-        reviewArr.username = username
+        reviewObj.username = username
         let date = (new Date(review.createdAt)).toDateString()
-        reviewArr.date = date
-        reviewAndUsers.push(reviewArr)
+        reviewObj.date = date
+        reviewAndUsers.push(reviewObj)
     })
 
 

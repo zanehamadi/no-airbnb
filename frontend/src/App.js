@@ -11,6 +11,8 @@ import { getPlanets } from "./store/planets"
 import { getUsers } from "./store/users"
 import { getSolarSystems } from "./store/solarSystems"
 import {getReviews} from "./store/reviews"
+import Home from "./components/Home";
+import Search from "./components/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,8 +39,12 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <Search solarSystems={solarSystems} planets={planets}/>
       {isLoaded && (
         <Switch>
+          <Route exact path='/'>
+            <Home/>
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
