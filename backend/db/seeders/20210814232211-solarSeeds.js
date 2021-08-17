@@ -9,7 +9,7 @@ module.exports = {
       {
         name: 'Proxima Centauri'
       }
-    ])
+    ], {})
 
   },
 
