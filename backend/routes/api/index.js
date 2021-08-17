@@ -6,11 +6,13 @@ const { restoreUser } = require('../../utils/auth.js');
 const { requireAuth } = require('../../utils/auth.js');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const planetsRouter = require('./planets.js')
 
 
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/planets', planetsRouter)
 
 router.post('/test', function(req, res) {
     res.json({ requestBody: req.body });
