@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Users from "./components/Users"
+import Planets from "./components/Planets"
 
 function App() {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  const planets = fetch('/api/planets').then(res => res.json())
+  console.log('Planets:', planets)
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -24,6 +27,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/planets">
+            <Planets/>
           </Route>
         </Switch>
       )}
