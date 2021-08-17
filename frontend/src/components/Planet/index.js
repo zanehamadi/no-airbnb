@@ -3,12 +3,28 @@ import { useParams} from "react-router"
 
 
 
-export default function Planet({planets, users, solarSystems}){
+export default function Planet({planets, users, solarSystems, reviews}){
     const planetIdObj = useParams()
     const planetId = planetIdObj.id
     const planet = planets.find(planet => +planet.id === +planetId)
     const user = users.find(user => +planet.user_id === +user.id)
     const solarSystem = solarSystems.find(solarSystem => +planet.solar_system_id === +solarSystem.id)
+    const planetReviews = reviews.filter(review => +review.planet_id ===  +planetId)
+    let reviewAndUsers = []
+    let counter = 0
+    planetReviews.forEach(review => {
+        let reviewArr = {}
+        let description = review.description
+        reviewArr.description = description
+        let user = users.find(user => +user.id === +review.user_id)
+        let username = user.username
+        reviewArr.username = username
+        let date = (new Date(review.createdAt)).toDateString()
+        reviewArr.date = date
+        reviewAndUsers.push(reviewArr)
+    })
+
+
 
     let randNum = Math.floor(Math.random(1) * 3)
 
@@ -32,6 +48,10 @@ export default function Planet({planets, users, solarSystems}){
         <h2>{user && `Owned by ${user.username}`}</h2>
         <h3>{solarSystem && solarSystem.name}</h3>
         <h3>{planet && `Temperature: ${message}`}</h3>
+        <h4>Reviews:</h4>
+        <ul>
+            {reviewAndUsers.map(review => <><li key={counter++}>{review.description}</li> <h4>{`posted by ${review.username} on ${review.date}`}</h4></>)}
+        </ul>
         </>
     )
 }
