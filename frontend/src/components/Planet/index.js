@@ -51,7 +51,7 @@ export default function Planet({planets, users, solarSystems, reviews}){
         <h3>{planet && `Temperature: ${message}`}</h3>
         <h4>Reviews:</h4>
         <ul>
-            {reviewAndUsers.map(review => <><li key={counter++}>{review.description}</li> <h4>{`posted by ${review.username} on ${review.date}`}</h4></>)}
+            {reviewAndUsers.map(review => <><li key={counter++}>{review && review.description }</li> <h4>{`posted by ${review && review.username} on ${review && review.date}`}</h4></>)}
         </ul>
         </>
     )
