@@ -1,25 +1,14 @@
-import { useDispatch, useSelector } from "react-redux"
-import { getPlanets } from "../../store/planets"
-import { useEffect } from "react";
+import {Link} from 'react-router-dom';
 
 
+export default function Planets({planets}){
 
-
-export default function Planets(){
-    const planetsSlice = useSelector(state => state.planets)
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getPlanets()); 
-    },[dispatch])
-
-    const planets = Object.values(planetsSlice) // We are converting our slice of state(that is an object) into an Array.
 
     return(
         <>
         <h2>Choose a Planet to visit</h2>
         <ul>
-            
-            {planets.map(planet => <li key={planet.id}>{planet.name}</li> )}
+            {planets.map(planet => <li key={planet.id}> <Link to={`/planets/${planet.id}`} key={planet.id}> {planet.name}</Link></li>)}
 
         </ul>
             
