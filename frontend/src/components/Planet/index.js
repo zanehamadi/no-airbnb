@@ -4,6 +4,7 @@ import { useParams} from "react-router"
 
 
 export default function Planet({planets, users, solarSystems, reviews}){
+    console.log('lol')
     const planetIdObj = useParams()
     const planetId = planetIdObj.id
     const planet = planets.find(planet => +planet.id === +planetId)
