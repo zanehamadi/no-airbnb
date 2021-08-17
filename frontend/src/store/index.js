@@ -4,13 +4,15 @@ import sessionReducer from './session';
 import planetReducer from './planets';
 import userReducer from "./users";
 import solarSystemReducer from "./solarSystems";
+import reviewReducer from './reviews';
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   planets: planetReducer,
   users: userReducer,
-  solarSystems: solarSystemReducer
+  solarSystems: solarSystemReducer,
+  reviews: reviewReducer
 });
 
 let enhancer;
