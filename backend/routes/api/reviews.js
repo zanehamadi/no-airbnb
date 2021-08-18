@@ -10,5 +10,16 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(reviews)
 }))
 
+router.post('/', asyncHandler(async (req,res) => {
+    const review = await Review.create(req.body);
+    // return res.json(await Review.findByPk(reviewId))
+    return res.json(review)
+}))
+
+router.delete('/', asyncHandler(async (req, res) => {
+    const review = await Review.findByPk(+req.body.review_id)
+    return res.json(reviews)
+}))
+
 
 module.exports = router
