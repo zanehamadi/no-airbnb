@@ -1,4 +1,5 @@
 import { useParams} from "react-router"
+import { useState } from "react"
 
 
 
@@ -24,6 +25,8 @@ export default function Planet({planets, users, solarSystems, reviews}){
         reviewObj.date = date
         reviewAndUsers.push(reviewObj)
     })
+
+    const [rating, setRating] = useState('')
 
 
 
@@ -53,6 +56,18 @@ export default function Planet({planets, users, solarSystems, reviews}){
         <ul>
             {reviewAndUsers.map(review => <><li key={counter++}>{review && review.description }</li> <h4>{`posted by ${review && review.username} on ${review && review.date}`}</h4></>)}
         </ul>
+        <div>
+            <form>
+                <h3>Have you been here? Post a review!</h3>
+                <button type='button' value={1} onClick={() => setRating(1)}><i class="far fa-star"></i></button>
+                <button type='button' value={2} onClick={() => setRating(2)}><i class="far fa-star"></i></button>
+                <button type='button' value={3} onClick={() => setRating(3)}><i class="far fa-star"></i></button>
+                <button type='button' value={4} onClick={() => setRating(4)}><i class="far fa-star"></i></button>
+                <button type='button' value={5} onClick={() => setRating(5)}><i class="far fa-star"></i></button>
+                <textarea></textarea>
+                <button>Post</button>
+            </form>
+        </div>
         </>
     )
 }
