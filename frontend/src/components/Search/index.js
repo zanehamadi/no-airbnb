@@ -104,7 +104,7 @@ export default function Search({solarSystems, planets, bookings}){
                 Duration of stay
                 <Calendar value={date} onChange={setDate} selectRange={true}/>
             </label>
-            <button type='button' onClick={() => }>Reset</button>
+            <button type='button'>Reset</button>
 
 
             <div>
