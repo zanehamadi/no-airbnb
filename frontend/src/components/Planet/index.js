@@ -64,6 +64,7 @@ export default function Planet({planets, users, solarSystems, reviews}){
                 <button type='button' value={3} onClick={() => setRating(3)}><i class="far fa-star"></i></button>
                 <button type='button' value={4} onClick={() => setRating(4)}><i class="far fa-star"></i></button>
                 <button type='button' value={5} onClick={() => setRating(5)}><i class="far fa-star"></i></button>
+                
                 <textarea></textarea>
                 <button>Post</button>
             </form>
