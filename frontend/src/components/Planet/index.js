@@ -76,15 +76,12 @@ export default function Planet({planets, users, solarSystems, reviews}){
 
     console.log('User ID:', userId)
 
+    if(userId){
+        let reviewCheck = reviews.filter(review => (+review.user_id === +userId) && (+review.planet_id === +planetId))
+        console.log(reviewCheck)
+        if(reviewCheck.length) canReview = false;
+    }
 
-    // useEffect(() => {
-
-        if(userId){
-            let reviewCheck = reviews.filter(review => (+review.user_id === +userId) && (+review.planet_id === +planetId))
-            console.log(reviewCheck)
-            if(reviewCheck.length) canReview = false;
-        }
-    // },[users, reviews])
 
 
 
@@ -130,6 +127,11 @@ export default function Planet({planets, users, solarSystems, reviews}){
                 <button disabled={reviewValidations.length > 0}>Post</button>
             </form>
         </div> : <></>}
+
+        {userId ? 
+        <div>
+            <h4>YUPPERS UR LOGGED IN!!</h4>
+        </div> : <> </>}
         </>
     )
 }
