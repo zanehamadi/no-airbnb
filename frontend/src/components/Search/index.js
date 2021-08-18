@@ -99,10 +99,12 @@ export default function Search({solarSystems, planets, bookings}){
             <label> Desired Temperature
                 <input type='range' min='1' max='10'  value={temp} onChange={e => setTemp(e.target.value)}/> {temp}
             </label>
-            <label>Duration of stay
+            <label>
                 {/* <input type='date' value={startDate} onChange={e => setStartDate(e.target.value)}/> */}
+                Duration of stay
                 <Calendar value={date} onChange={setDate} selectRange={true}/>
             </label>
+            <button type='button' onClick={() => }>Reset</button>
 
 
             <div>

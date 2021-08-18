@@ -44,10 +44,10 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <Search solarSystems={solarSystems} planets={planets} bookings={bookings}/>
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
+            <Search solarSystems={solarSystems} planets={planets} bookings={bookings}/>
             <Home/>
           </Route>
           <Route path="/login">
