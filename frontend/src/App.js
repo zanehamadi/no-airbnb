@@ -7,12 +7,13 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Planets from "./components/Planets"
 import Planet from "./components/Planet";
+import Home from "./components/Home";
+import Search from "./components/Search";
 import { getPlanets } from "./store/planets"
 import { getUsers } from "./store/users"
 import { getSolarSystems } from "./store/solarSystems"
 import {getReviews} from "./store/reviews"
-import Home from "./components/Home";
-import Search from "./components/Search";
+import { getBookings } from "./store/bookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,22 +25,26 @@ function App() {
       dispatch(getUsers()); 
       dispatch(getSolarSystems());
       dispatch(getReviews());
+      dispatch(getBookings())
   },[dispatch])
 
   const planetsSlice = useSelector(state => state.planets)
   const usersSlice = useSelector(state => state.users)
   const solarSystemsSlice = useSelector(state => state.solarSystems)
   const reviewsSlice = useSelector(state => state.reviews)
+  const bookingSlice = useSelector(state => state.bookings)
 
   const planets = Object.values(planetsSlice) // We are converting our slice of state(that is an object) into an Array.
   const users = Object.values(usersSlice)
   const solarSystems = Object.values(solarSystemsSlice)
   const reviews = Object.values(reviewsSlice)
+  const bookings = Object.values(bookingSlice)
+
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <Search solarSystems={solarSystems} planets={planets}/>
+      <Search solarSystems={solarSystems} planets={planets} bookings={bookings}/>
       {isLoaded && (
         <Switch>
           <Route exact path='/'>

@@ -5,6 +5,7 @@ import planetReducer from './planets';
 import userReducer from "./users";
 import solarSystemReducer from "./solarSystems";
 import reviewReducer from './reviews';
+import bookingReducer from "./bookings";
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   planets: planetReducer,
   users: userReducer,
   solarSystems: solarSystemReducer,
-  reviews: reviewReducer
+  reviews: reviewReducer,
+  bookings: bookingReducer
 });
 
 let enhancer;

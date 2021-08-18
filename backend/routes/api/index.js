@@ -9,6 +9,7 @@ const usersRouter = require('./users.js');
 const planetsRouter = require('./planets.js')
 const solarSystemRouter = require('./solarSystems.js')
 const reviewsRouter = require('./reviews.js')
+const bookingsRouter = require('./bookings.js')
 
 
 
@@ -17,6 +18,7 @@ router.use('/users', usersRouter);
 router.use('/planets', planetsRouter)
 router.use('/solarSystems', solarSystemRouter)
 router.use('/reviews', reviewsRouter)
+router.use('/bookings', bookingsRouter)
 
 router.post('/test', function(req, res) {
     res.json({ requestBody: req.body });
