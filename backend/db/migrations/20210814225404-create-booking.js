@@ -9,10 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       startDate: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING(100)
       },
       endDate: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING(100)
       },
       user_id: {
         type: Sequelize.INTEGER,

@@ -4,8 +4,8 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
       return queryInterface.bulkInsert('Bookings', [{
-        startDate: new Date(2021, 7 , 20),
-        endDate: new Date(2021, 8, 3),
+        startDate: 'Thu Sep 16 2021 00:00:00 GMT-0400 (Eastern Daylight Time)',
+        endDate: 'Thu Sep 23 2021 23:59:59 GMT-0400 (Eastern Daylight Time)',
         user_id: 2,
         planet_id: 8,
       }], {});
