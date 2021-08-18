@@ -9,7 +9,7 @@ import 'react-calendar/dist/Calendar.css';
 export default function Search({solarSystems, planets, bookings}){
     
     const [temp, setTemp] = useState('')
-    const [system, setSystem] = useState('')
+    const [system, setSystem] = useState('All')
     const [name, setName] = useState('')
     const [searchPlanets, setSearchPlanets] = useState([])
     // const [startDate, setStartDate] = useState('')
@@ -19,13 +19,12 @@ export default function Search({solarSystems, planets, bookings}){
 
     const resetFunction = () => {
         setTemp('')
-        setSystem('')
+        setSystem('All')
         setName('')
         setSearchPlanets([])
         setDate(new Date())
     }
 
-    console.log('BEFORE - Search Planets:', searchPlanets)
 
 
     useEffect(() => {
@@ -44,9 +43,9 @@ export default function Search({solarSystems, planets, bookings}){
                 planetsArr = planetsArr.filter(planet => +temp === +planet.temperature)
             }
 
-            if(system) {
-                let solarObj = solarSystems.find(sSystem => sSystem.name === system)
-                let solarId = solarObj.id
+            if(system !== 'All') {
+                let solarObj = solarSystems.find(sSystem => sSystem?.name === system)
+                let solarId = solarObj?.id
                 planetsArr = planetsArr.filter(planet => solarId === planet.solar_system_id)
             }
 
@@ -105,6 +104,7 @@ export default function Search({solarSystems, planets, bookings}){
             
             <label> Multiplanetary Systems
             <select value={system} onChange={e => setSystem(e.target.value)}>
+                <option key='7331'>All</option>
                 {solarSystems.map(system => <option key={system.id}>{system.name}</option>)}
             </select>
             </label>
