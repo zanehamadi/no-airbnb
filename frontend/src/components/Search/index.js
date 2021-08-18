@@ -16,73 +16,85 @@ export default function Search({solarSystems, planets, bookings}){
     // const [endDate, setEndDate] = useState('')
     const [date, setDate] = useState(new Date())
 
+
+    const resetFunction = () => {
+        setTemp('')
+        setSystem('')
+        setName('')
+        setSearchPlanets([])
+        setDate(new Date())
+    }
+
     console.log('BEFORE - Search Planets:', searchPlanets)
 
 
     useEffect(() => {
 
-        let planetsArr = planets
-
-        if(name) {
-            planetsArr = planetsArr.filter(planet => ((planet.name).toUpperCase()).includes((name.toUpperCase())))
-        }
-
-
-        if(temp){
-            planetsArr = planetsArr.filter(planet => +temp === +planet.temperature)
-        }
-
-
-        if(system) {
-            let solarObj = solarSystems.find(sSystem => sSystem.name === system)
-            let solarId = solarObj.id
-            planetsArr = planetsArr.filter(planet => solarId === planet.solar_system_id)
-        }
-
         
-        if(date){
-            let startInputDate = date[0]
-            let endInputDate = date[1]
+        if((name || temp) || (system )){
+            
+            let planetsArr = planets
 
-            bookings = bookings.filter(booking => {
-                
+            if(name) {
+                planetsArr = planetsArr.filter(planet => ((planet.name).toUpperCase()).includes((name.toUpperCase())))
+            }
 
-                if((new Date(booking.startDate)) === startInputDate) return false
-                if((new Date(booking.endDate)) === endInputDate) return false
+            
+            if(temp){
+                planetsArr = planetsArr.filter(planet => +temp === +planet.temperature)
+            }
 
-                // desiredDate starts before bookedDate && desiredDate ends after bookDate starts
-                if((startInputDate <= (new Date(booking.startDate))) && (endInputDate >= (new Date(booking.endDate)))) return true;
-                // bookDate starts before desiredDate && desiredDate ends before bookDate
+            if(system) {
+                let solarObj = solarSystems.find(sSystem => sSystem.name === system)
+                let solarId = solarObj.id
+                planetsArr = planetsArr.filter(planet => solarId === planet.solar_system_id)
+            }
 
-                if(((new Date(booking.startDate)) <= startInputDate) && (endInputDate <= (new Date(booking.endDate)))) return true;
-
-                // bookDate starts before desiredDate && desiredDate starts before bookDate ends
-                if(((new Date(booking.startDate)) <= startInputDate) && (startInputDate <= (new Date(booking.endDate)))) return true;
-
-                // bookDate starts before desiredDate ends && desiredDate ends before bookDate ends
-                if(((new Date(booking.startDate)) <= endInputDate) && (endInputDate <= (new Date(booking.endDate)))) return true;
-
-                // desiredDate ends before bookedDate starts && bookedDate ends before desiredDate ends
-                if((endInputDate < (new Date(booking.startDate)))  && ((new Date(booking.endDate)) < endInputDate)) return true;
-                return false
-            })
-
-            planetsArr = planetsArr.filter(planet => {
-                let checker = true
-
-                bookings.forEach(booking => {
-                    if(+booking.planet_id === +planet.id){
-                        checker = false
-                    }
+            if(date){
+                let startInputDate = date[0]
+                let endInputDate = date[1]
+    
+                bookings = bookings.filter(booking => {
+                    
+    
+                    if((new Date(booking.startDate)) === startInputDate) return false
+                    if((new Date(booking.endDate)) === endInputDate) return false
+    
+                    // desiredDate starts before bookedDate && desiredDate ends after bookDate starts
+                    if((startInputDate <= (new Date(booking.startDate))) && (endInputDate >= (new Date(booking.endDate)))) return true;
+                    // bookDate starts before desiredDate && desiredDate ends before bookDate
+    
+                    if(((new Date(booking.startDate)) <= startInputDate) && (endInputDate <= (new Date(booking.endDate)))) return true;
+    
+                    // bookDate starts before desiredDate && desiredDate starts before bookDate ends
+                    if(((new Date(booking.startDate)) <= startInputDate) && (startInputDate <= (new Date(booking.endDate)))) return true;
+    
+                    // bookDate starts before desiredDate ends && desiredDate ends before bookDate ends
+                    if(((new Date(booking.startDate)) <= endInputDate) && (endInputDate <= (new Date(booking.endDate)))) return true;
+    
+                    // desiredDate ends before bookedDate starts && bookedDate ends before desiredDate ends
+                    if((endInputDate < (new Date(booking.startDate)))  && ((new Date(booking.endDate)) < endInputDate)) return true;
+                    return false
                 })
-                return checker
-            })
+    
+                planetsArr = planetsArr.filter(planet => {
+                    let checker = true
+    
+                    bookings.forEach(booking => {
+                        if(+booking.planet_id === +planet.id){
+                            checker = false
+                        }
+                    })
+                    return checker
+                })
+            }
+            
+
+            setSearchPlanets(planetsArr)
         }
+
         
 
-        console.log('AFTER BOOKINGS:', bookings)
-        console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-        setSearchPlanets(planetsArr)
 
 
     }, [temp, system, name, date])
@@ -104,11 +116,11 @@ export default function Search({solarSystems, planets, bookings}){
                 Duration of stay
                 <Calendar value={date} onChange={setDate} selectRange={true}/>
             </label>
-            <button type='button'>Reset</button>
+            <button type='button' onClick={ () => resetFunction()}>Reset</button>
 
 
             <div>
-                {searchPlanets ?                     
+                {searchPlanets.length !== 0 ?                     
                 <ul>
                     {searchPlanets.map(planet => <li><Link to={`/planets/${planet.id}`}>{planet.name}</Link></li>)}
                 </ul> 

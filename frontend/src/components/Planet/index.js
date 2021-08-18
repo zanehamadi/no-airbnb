@@ -1,5 +1,5 @@
 import { useParams} from "react-router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 
@@ -14,6 +14,7 @@ export default function Planet({planets, users, solarSystems, reviews}){
     const planetReviews = reviews.filter(review => +review.planet_id ===  +planetId)
     let reviewAndUsers = []
     let counter = 0
+
     planetReviews.forEach(review => {
         let reviewObj = {}
         let description = review.description
@@ -27,6 +28,18 @@ export default function Planet({planets, users, solarSystems, reviews}){
     })
 
     const [rating, setRating] = useState('')
+    const [description, setDescription] = useState('')
+    const [reviewValidations, setReviewValidations] = useState([])
+
+
+    useEffect(() => {
+        let validations = []
+        if(!rating) validations.push('Please entire a star rating')
+        if(!description) validations.push('Please enter a review')
+
+        setReviewValidations(validations)
+
+    }, [rating, description])
 
 
 
@@ -64,9 +77,9 @@ export default function Planet({planets, users, solarSystems, reviews}){
                 <button type='button' value={3} onClick={() => setRating(3)}><i class="far fa-star"></i></button>
                 <button type='button' value={4} onClick={() => setRating(4)}><i class="far fa-star"></i></button>
                 <button type='button' value={5} onClick={() => setRating(5)}><i class="far fa-star"></i></button>
-                
-                <textarea></textarea>
-                <button>Post</button>
+
+                <textarea value={description} onChange={e => setDescription(e.target.value)}></textarea>
+                <button disabled={reviewValidations.length > 0}>Post</button>
             </form>
         </div>
         </>
