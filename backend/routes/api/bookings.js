@@ -11,4 +11,10 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 
+router.post('/', asyncHandler(async (req,res) => {
+    const booking = await Booking.create(req.body);
+    return res.json(booking)
+}));
+
+
 module.exports = router

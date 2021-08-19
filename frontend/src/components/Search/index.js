@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-// let relevantPlanets;
 
 
 export default function Search({solarSystems, planets, bookings}){
@@ -56,8 +55,8 @@ export default function Search({solarSystems, planets, bookings}){
                 bookings = bookings.filter(booking => {
                     
     
-                    if((new Date(booking.startDate)) === startInputDate) return false
-                    if((new Date(booking.endDate)) === endInputDate) return false
+                    if((new Date(booking.startDate)) === startInputDate) return true
+                    if((new Date(booking.endDate)) === endInputDate) return true
     
                     // desiredDate starts before bookedDate && desiredDate ends after bookDate starts
                     if((startInputDate <= (new Date(booking.startDate))) && (endInputDate >= (new Date(booking.endDate)))) return true;

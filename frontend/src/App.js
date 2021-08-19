@@ -60,7 +60,7 @@ function App() {
             <Planets planets={planets}/>
           </Route>
           <Route path='/planets/:id'>
-            <Planet planets={planets} users={users} solarSystems={solarSystems} reviews={reviews}/>
+            <Planet planets={planets} users={users} solarSystems={solarSystems} reviews={reviews} bookings={bookings}/>
           </Route>
           <Route>
             404 Not Found
