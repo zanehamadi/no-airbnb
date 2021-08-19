@@ -1,12 +1,14 @@
 import { useParams} from "react-router"
 import { useEffect, useState } from "react"
 import { addReview } from "../../store/reviews"
+import {bookDate} from "../../store/bookings"
 import { useDispatch, useSelector } from "react-redux"
+import Calendar from 'react-calendar';
 
 
 
 
-export default function Planet({planets, users, solarSystems, reviews}){
+export default function Planet({planets, users, solarSystems, reviews, bookings}){
 
     const session = useSelector(state => state.session);
     const planetIdObj = useParams()
@@ -15,14 +17,10 @@ export default function Planet({planets, users, solarSystems, reviews}){
     const user = users?.find(user => +planet?.user_id === +user.id)
     const solarSystem = solarSystems?.find(solarSystem => +planet.solar_system_id === +solarSystem.id)
     const planetReviews = reviews?.filter(review => +review.planet_id ===  +planetId)
-    let userId = undefined
     let reviewAndUsers = []
     let counter = 0
     let canReview = session.user !== undefined;
 
-    if(session?.user !== undefined){
-        userId = session.user?.id
-    }
 
 
     
@@ -41,11 +39,59 @@ export default function Planet({planets, users, solarSystems, reviews}){
 
     const dispatch = useDispatch()
 
-    const [rating, setRating] = useState('')
-    const [description, setDescription] = useState('')
-    const [reviewValidations, setReviewValidations] = useState([])
+    const [rating, setRating] = useState('');
+    const [description, setDescription] = useState('');
+    const [reviewValidations, setReviewValidations] = useState([]);
+    const [userId, setUserId] = useState(null);
+    const [date, setDate] = useState(new Date());
+    const [bookingCheck, setBookingCheck] = useState(true)
 
-    const submitFunc =  (e) => {
+    console.log('DATE:', date[0])
+    useEffect(() => {
+        setBookingCheck(true)
+        let startInputDate = date[0]
+        let endInputDate = date[1]
+        console.log('BOOKING DATE HAS CHANGED')
+
+        bookings = bookings.filter(booking => {
+                    
+    
+            if((new Date(booking.startDate)) === startInputDate) return true
+            if((new Date(booking.endDate)) === endInputDate) return true
+
+            // desiredDate starts before bookedDate && desiredDate ends after bookDate starts
+            if((startInputDate <= (new Date(booking.startDate))) && (endInputDate >= (new Date(booking.endDate)))) return true;
+            // bookDate starts before desiredDate && desiredDate ends before bookDate
+
+            if(((new Date(booking.startDate)) <= startInputDate) && (endInputDate <= (new Date(booking.endDate)))) return true;
+
+            // bookDate starts before desiredDate && desiredDate starts before bookDate ends
+            if(((new Date(booking.startDate)) <= startInputDate) && (startInputDate <= (new Date(booking.endDate)))) return true;
+
+            // bookDate starts before desiredDate ends && desiredDate ends before bookDate ends
+            if(((new Date(booking.startDate)) <= endInputDate) && (endInputDate <= (new Date(booking.endDate)))) return true;
+
+            // desiredDate ends before bookedDate starts && bookedDate ends before desiredDate ends
+            if((endInputDate < (new Date(booking.startDate)))  && ((new Date(booking.endDate)) < endInputDate)) return true;
+            return false
+        })
+
+        if(bookings.length){
+            bookings.forEach(booking => {
+                if(+booking.planet_id === +planetId) setBookingCheck(false)
+            })
+        }
+            
+    }, [bookings, date])
+
+    useEffect(() => {
+        if(session?.user !== undefined){
+            setUserId(session.user?.id)
+        }
+    },[session])
+
+
+    const submitReviewFunc =  (e) => {
         e.preventDefault();
 
         const review = {
@@ -63,10 +109,32 @@ export default function Planet({planets, users, solarSystems, reviews}){
 
     }
 
+    const submitBookingFunc = (e) => {
+        console.log('YO!!')
+        e.preventDefault();
+
+        let startDate = (date[0]).toString()
+        let endDate = (date[0]).toString()
+
+        console.log('TEST STRING:', startDate)
+        console.log('TYPE OF TEST STRING:', typeof startDate)
+        const bookedDate = {
+            startDate,
+            endDate,
+            user_id: +userId,
+            planet_id: planetId
+        }
+
+        dispatch(bookDate(bookedDate));
+
+        setDate(new Date());
+
+    }
+
 
     useEffect(() => {
         let validations = []
-        if(!rating) validations.push('Please entire a star rating')
+        if(!rating) validations.push('Please enter a star rating')
         if(!description) validations.push('Please enter a review')
 
         setReviewValidations(validations)
@@ -74,17 +142,13 @@ export default function Planet({planets, users, solarSystems, reviews}){
     }, [rating, description])
 
 
-    console.log('User ID:', userId)
 
 
-    // useEffect(() => {
+    if(userId){
+        let reviewCheck = reviews.filter(review => (+review.user_id === +userId) && (+review.planet_id === +planetId))
+        if(reviewCheck.length) canReview = false;
+    }
 
-        if(userId){
-            let reviewCheck = reviews.filter(review => (+review.user_id === +userId) && (+review.planet_id === +planetId))
-            console.log(reviewCheck)
-            if(reviewCheck.length) canReview = false;
-        }
-    // },[users, reviews])
 
 
 
@@ -115,10 +179,31 @@ export default function Planet({planets, users, solarSystems, reviews}){
             {reviewAndUsers.map(review => <><li key={counter++}>{review && review.description }</li> <h4>{`posted by ${review && review.username} on ${review && review.date}`}</h4></>)}
         </ul>
 
-        {console.log('Can Review:', canReview)}
 
-        {canReview ? <div>
-            <form onSubmit={submitFunc}>
+        {userId && (
+            <div>
+                <form onSubmit={submitBookingFunc}>
+                    <h3>Book a date</h3>
+                    <Calendar value={date} onChange={setDate} selectRange={true}/>
+                    
+                    {bookingCheck ? 
+                    
+                    <div>
+                        <button>Book Date</button>
+                    </div> 
+                    
+                    : 
+                    
+                    <div>
+                        <h3> Date already booked.. </h3>
+                    </div>
+                    }
+                </form>
+            </div>
+        )}
+
+        {userId && canReview && (<div>
+            <form onSubmit={submitReviewFunc}>
                 <h3>Have you been here? Post a review!</h3>
                 <button type='button' value={1} onClick={() => setRating(1)}><i class="far fa-star"></i></button>
                 <button type='button' value={2} onClick={() => setRating(2)}><i class="far fa-star"></i></button>
@@ -129,7 +214,7 @@ export default function Planet({planets, users, solarSystems, reviews}){
                 <textarea value={description} onChange={e => setDescription(e.target.value)}></textarea>
                 <button disabled={reviewValidations.length > 0}>Post</button>
             </form>
-        </div> : <></>}
+        </div>)}
         </>
     )
 }

@@ -16,10 +16,10 @@ router.post('/', asyncHandler(async (req,res) => {
     return res.json(review)
 }))
 
-router.delete('/', asyncHandler(async (req, res) => {
-    const review = await Review.findByPk(+req.body.review_id)
-    return res.json(reviews)
-}))
+// router.delete('/:review_id', asyncHandler(async (req, res) => {
+
+//     return console.log('Sucessfully deleted review.')
+// }))
 
 
 module.exports = router
