@@ -3,6 +3,7 @@ import {csrfFetch} from './csrf';
 
 const LOAD_BOOKINGS = "bookings/LOAD_BOOKINGS";
 const BOOK_DATE = "bookings/BOOK_DATE";
+const DELETE_BOOKING = "booking/date";
 
 
 
@@ -15,6 +16,11 @@ const loadBookings = (bookings) => ({
 const createBooking = (booking) => ({
     type: BOOK_DATE,
     booking
+})
+
+const deleteBooking = (id) => ({
+    type: DELETE_BOOKING,
+    id
 })
 
 
@@ -47,6 +53,17 @@ export const getBookings = () => async (dispatch) => {
 };
 
 
+export const destroyABooking = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/${id}`, {
+        method: 'delete'
+    });
+
+    if(response.ok){
+        dispatch(deleteBooking(id));
+        return
+    }
+};
+
 
 const initialState = {}
 
@@ -76,6 +93,11 @@ const bookingReducer = (state = initialState, action ) => {
                     ...action.booking
                 }
             };
+        }
+        case DELETE_BOOKING: {
+            const newState = {...state};
+            delete newState[action.id];
+            return newState
         }
 
         default:

@@ -5,6 +5,8 @@ import {bookDate} from "../../store/bookings"
 import { useDispatch, useSelector } from "react-redux"
 import Calendar from 'react-calendar';
 import { useHistory } from "react-router"
+import { Link } from "react-router-dom"
+import './planet.css' 
 
 
 
@@ -43,6 +45,8 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         let description = review?.description
         reviewObj.description = description
         let user = users?.find(user => +user.id === +review.user_id)
+        let userId = user?.id
+        reviewObj.userId = userId
         let username = user?.username
         reviewObj.username = username
         let date = (new Date(review.createdAt)).toDateString()
@@ -200,10 +204,25 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         planet ?
         <>
         <h2>{planet && planet.name }</h2>
-        <h2>{user && `Owned by ${user.username}`}</h2>
+        <div className="ownerNameDisplay"> <h2>Owned by <Link to={`/users/${user?.id}`}>{user && `${user.username}`}</Link></h2> </div>
         <h3>{solarSystem && solarSystem.name}</h3>
         <h3>{planet && `Temperature: ${message}`}</h3>
-        {reviewAndUsers.length ? <> <h4>Reviews:</h4>  {reviewAndUsers.map(review => <><div key={counter++}>{review && review.description }</div>   <div>{review.stars}</div>  <h4>{`posted by ${review && review.username} on ${review && review.date}`}</h4> </>)}  </> : <><h4>No reviews yet.</h4></>}   
+        {reviewAndUsers.length ? 
+            <> 
+                <h4>Reviews:</h4>  
+                {reviewAndUsers.map(review => 
+                    <>
+                        <div key={review?.id}>{review && review.description }</div>  
+                        <div>{review.stars}</div> 
+                        <h4> posted by <Link to={`/users/${userId}`}>{review && review.username}</Link> {`on ${review && review.date}`}</h4> 
+                    </>
+                )}  
+
+            </>
+            : 
+            <>
+                <h4>No reviews yet.</h4>
+            </>}   
        
         {userId && (
             <div>
