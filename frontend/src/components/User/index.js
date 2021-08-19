@@ -1,7 +1,9 @@
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { destroyAReview } from "../../store/reviews";
+import { destroyABooking } from "../../store/bookings";
 
 export default function User({planets, bookings, reviews, users}){
     
@@ -10,12 +12,22 @@ export default function User({planets, bookings, reviews, users}){
     const {id} = useParams()
     const user = users?.find(specUser => +specUser.id === +id)
     const yourprofile = session?.user ? +user?.id === +session?.user.id : false 
+    const dispatch = useDispatch()
 
 
     const [userBookings, setUserBookings] = useState([]);
     const [userPlanets, setUserPlanets] = useState([]);
     const [userReviews, setUserReviews] = useState([]);
 
+
+
+    const deleteReviewFunc =  (id) => {
+        dispatch(destroyAReview(id));
+    }
+
+    const deleteBookingFunc = (id) => {
+        dispatch(destroyABooking(id))
+    }
 
 
     useEffect(() => {
@@ -52,7 +64,11 @@ export default function User({planets, bookings, reviews, users}){
             bookingObj.planetId = planetId
             planet = planet.name
 
+
+
             bookingObj.planet = planet
+            let id = booking.id
+            bookingObj.id = id
 
             formattedBookings.push(bookingObj)
 
@@ -75,8 +91,10 @@ export default function User({planets, bookings, reviews, users}){
 
             let planet = planets.find(planet => +planet.id === +review.planet_id )
             planet = planet.name
-
             reviewObj.planet = planet
+
+            let id = review.id
+            reviewObj.id = id
             formattedReviews.push(reviewObj)
         })
 
@@ -85,15 +103,6 @@ export default function User({planets, bookings, reviews, users}){
         setUserPlanets(relevantPlanets)
         
     }, [bookings, planets, reviews])
-
-
-    console.log('Booking:', userBookings)
-    console.log('Planets:', userPlanets)
-    console.log('Reviews:', userReviews)
-
-
-
-
 
 
 
@@ -108,7 +117,7 @@ export default function User({planets, bookings, reviews, users}){
                 {userReviews.map(review => 
                 <>
                 <div>{`"${review.description}" - ${review.planet}`}</div>
-                {review.stars} {yourprofile ? <div><button>delete</button> </div> : <></>}
+                {review.stars} {yourprofile ? <div><button onClick={() => deleteReviewFunc(review.id)}>delete</button> </div> : <></>}
                 </>
                 )
             }
@@ -122,7 +131,7 @@ export default function User({planets, bookings, reviews, users}){
                     <>
                         <div> 
                             <Link to={`/planets/${booking.planetId}`}>{booking.planet}</Link>{` on ${booking.startDate} to ${booking.endDate}`}
-                            <button>delete</button>
+                            <button onClick={() => deleteBookingFunc(booking.id)}>delete</button>
                         </div>
                     </>
                     )} 

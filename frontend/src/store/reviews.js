@@ -4,7 +4,7 @@ const LOAD_REVIEWS = "reviews/LOAD_REVIEWS";
 
 const POST_REVIEW = 'reviews/POST_REVIEW';
 
-// const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
+const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
 
 const loadReviews = (reviews) => ({
@@ -17,10 +17,10 @@ const postReview = (review) => ({
     review
 })
 
-// const deleteReview = (review) => ({
-//     type: DELETE_REVIEW,
-//     review
-// })
+const deleteReview = (id) => ({
+    type: DELETE_REVIEW,
+    id
+})
 
 
 export const getReviews = () => async (dispatch) => {
@@ -47,6 +47,19 @@ export const addReview = (formData) => async (dispatch) => {
     };
 
 };
+
+
+
+export const destroyAReview = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${id}`, {
+        method: 'delete'
+    });
+
+    if(response.ok){
+        dispatch(deleteReview(id));
+        return
+    }
+}
 
 
 
@@ -104,6 +117,12 @@ const reviewReducer = (state = initialState, action ) => {
         //         }
         //     }
         // }
+
+        case DELETE_REVIEW: {
+            const newState = {...state};
+            delete newState[action.id];
+            return newState
+        }
 
         default:
             return state;

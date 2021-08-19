@@ -48,7 +48,7 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation isLoaded={isLoaded} users={users}/>
       {isLoaded && (
         <Switch>
           <Route exact path='/'>

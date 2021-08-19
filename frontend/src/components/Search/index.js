@@ -6,6 +6,7 @@ import './search.css'
 
 
 
+
 export default function Search({solarSystems, planets, bookings}){
     
     const [temp, setTemp] = useState('')
@@ -16,6 +17,14 @@ export default function Search({solarSystems, planets, bookings}){
     // const [endDate, setEndDate] = useState('')
     const [date, setDate] = useState(new Date())
     const [flexible, setFlexible] = useState(false)
+    const [showSearch, setShowSearch] = useState(false)
+    const [display, setDisplay] = useState('inline')
+
+
+    useEffect(() => {
+        if(showSearch) setDisplay('none')
+        else setDisplay('inline')
+    },[showSearch])
 
 
 
@@ -27,8 +36,6 @@ export default function Search({solarSystems, planets, bookings}){
         if((name || temp) || (system )){
             
             let planetsArr = planets
-            
-        
             
             if(name) {
                 planetsArr = planetsArr.filter(planet => ((planet.name).toUpperCase()).includes((name.toUpperCase())))
@@ -106,8 +113,12 @@ export default function Search({solarSystems, planets, bookings}){
 
 
     return(
+        <>
+        <button value={showSearch}  onClick={() => setShowSearch(true)} style={{display:`${display}`}}>Search</button>
+        {showSearch ? 
+        <>
+        <button onClick={() => setShowSearch(false)}>Hide</button>
         <form id='searchForm'>
-
             <input placeholder={'Planet Name'} value={name} onChange={e => setName(e.target.value)}></input>
             
             <label> Multiplanetary Systems
@@ -131,10 +142,13 @@ export default function Search({solarSystems, planets, bookings}){
                 {searchPlanets.length !== 0 ?                     
                     searchPlanets.map(planet => <div><Link to={`/planets/${planet.id}`}>{planet.name}</Link></div>)
             : <></>}
+
             </div>
 
 
         </form>
+        </> : <> </>}
+        </>
     )
 }
 

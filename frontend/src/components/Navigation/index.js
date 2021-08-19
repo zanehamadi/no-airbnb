@@ -4,13 +4,18 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded, planets}){
   const sessionUser = useSelector(state => state.session.user);
+  const session = useSelector(state => state.session);
+
+  const id = session.user ? session.user.id : ''
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
+      <>
       <ProfileButton user={sessionUser} />
+      </>
     );
   } else {
     sessionLinks = (
@@ -22,13 +27,22 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/"> Home </NavLink>
-        <NavLink exact to= '/planets'> Planets </NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+        <div>
+          <NavLink exact to="/"> Home </NavLink>
+          <NavLink exact to= '/planets'> Planets </NavLink>
+          {id ? 
+            <>
+              <NavLink to={`/users/${id}`}>
+                Profile
+              </NavLink>
+            </> 
+            :
+             <></>}
+            <NavLink to={'/planets'}>
+              All Planets
+            </NavLink>
+          {isLoaded && sessionLinks}
+        </div>
   );
 }
 
