@@ -9,11 +9,13 @@ import Planets from "./components/Planets"
 import Planet from "./components/Planet";
 import Home from "./components/Home";
 import Search from "./components/Search";
+import User from "./components/User";
 import { getPlanets } from "./store/planets"
 import { getUsers } from "./store/users"
 import { getSolarSystems } from "./store/solarSystems"
 import {getReviews} from "./store/reviews"
 import { getBookings } from "./store/bookings";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -34,11 +36,14 @@ function App() {
   const reviewsSlice = useSelector(state => state.reviews)
   const bookingSlice = useSelector(state => state.bookings)
 
+
+
   const planets = Object.values(planetsSlice) // We are converting our slice of state(that is an object) into an Array.
   const users = Object.values(usersSlice)
   const solarSystems = Object.values(solarSystemsSlice)
   const reviews = Object.values(reviewsSlice)
   const bookings = Object.values(bookingSlice)
+
 
 
   return (
@@ -50,6 +55,9 @@ function App() {
             <Search solarSystems={solarSystems} planets={planets} bookings={bookings}/>
             <Home/>
           </Route>
+          <Route exact path={`/users/:id`}>
+            <User users={users} planets={planets} bookings={bookings} reviews={reviews}/> 
+          </Route> 
           <Route path="/login">
             <LoginFormPage />
           </Route>

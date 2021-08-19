@@ -6,28 +6,63 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
-        email: 'demo@user.oi',
-        username: 'Demo-lition',
+        email: 'thrik@solar.com',
+        username: 'Thrik',
         hashedPassword: bcrypt.hashSync('password'),
       },
       {
-        email: faker.internet.email(),
-        username: 'FakeUser1',
+        email: 'destroyerGox@galacticmail.com',
+        username: 'Gox',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
       },
       {
-        email: faker.internet.email(),
-        username: 'FakeUser2',
+        email: 'gleeboshleeb@galacticmail.com',
+        username: 'Gleebo',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
       },
       {
-        email: faker.internet.email(),
+        email: 'zorg1112@galacticmail.com',
         username: 'Zorg',
         hashedPassword: bcrypt.hashSync(faker.internet.password())
       },
       {
-        email: faker.internet.email(),
+        email: 'blorgGflorg@galacticmail.com',
         username: 'Blorg',
+        hashedPassword: bcrypt.hashSync(faker.internet.password())
+      },
+      {
+        email: 'uvur@solar.com',
+        username: "Uv'ur",
+        hashedPassword: bcrypt.hashSync(faker.internet.password())
+      },
+      {
+        email: 'olkitsglorg@galacticmail.com',
+        username: "Olkits",
+        hashedPassword: bcrypt.hashSync(faker.internet.password())
+      },
+      {
+        email: 'buvullplorb@solar.com',
+        username: 'buvull',
+        hashedPassword: bcrypt.hashSync(faker.internet.password())
+      },
+      {
+        email: 'zalorsL@galacticmail.com',
+        username: 'zalors',
+        hashedPassword: bcrypt.hashSync(faker.internet.password())
+      },
+      {
+        email: 'khirgodsB@galacticmail.com',
+        username: 'khirgods',
+        hashedPassword: bcrypt.hashSync(faker.internet.password())
+      },
+      {
+        email:'bheemhoBleeb@solar.com',
+        username:'bheemho',
+        hashedPassword: bcrypt.hashSync(faker.internet.password())
+      },
+      {
+        email: 'vurrins@solar.com',
+        username:'Vurrins',
         hashedPassword: bcrypt.hashSync(faker.internet.password())
       }
     ], {});

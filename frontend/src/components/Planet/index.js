@@ -16,15 +16,20 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
     const planet = planets?.find(planet => +planet.id === +planetId)
     const user = users?.find(user => +planet?.user_id === +user.id)
     const solarSystem = solarSystems?.find(solarSystem => +planet.solar_system_id === +solarSystem.id)
-    const planetReviews = reviews?.filter(review => +review.planet_id ===  +planetId)
+    
     let reviewAndUsers = []
+    
     let counter = 0
     let canReview = session.user !== undefined;
+    
+    // const [userReview, setUserReview] = useState('');
 
 
+    let planetReviews = reviews?.filter(review => {
+        if (+review?.planet_id ===  +planetId) return true;
+    })
 
     
-
     planetReviews?.forEach(review => {
         let reviewObj = {}
         let description = review?.description
@@ -34,8 +39,11 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         reviewObj.username = username
         let date = (new Date(review.createdAt)).toDateString()
         reviewObj.date = date
+
         reviewAndUsers.push(reviewObj)
     })
+
+    console.log('reviewAndUser', reviewAndUsers)
 
     const dispatch = useDispatch()
 
@@ -45,6 +53,7 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
     const [userId, setUserId] = useState(null);
     const [date, setDate] = useState(new Date());
     const [bookingCheck, setBookingCheck] = useState(true)
+
 
     console.log('DATE:', date[0])
     useEffect(() => {
@@ -110,7 +119,6 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
     }
 
     const submitBookingFunc = (e) => {
-        console.log('YO!!')
         e.preventDefault();
 
         let startDate = (date[0]).toString()
@@ -151,7 +159,6 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
 
 
 
-
     let randNum = Math.floor(Math.random(1) * 3)
 
     let message = (() => {
@@ -167,6 +174,7 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         else if (temp <= 10) return gr4[randNum] 
     })()
 
+
     
     return(
         <>
@@ -174,12 +182,8 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         <h2>{user && `Owned by ${user.username}`}</h2>
         <h3>{solarSystem && solarSystem.name}</h3>
         <h3>{planet && `Temperature: ${message}`}</h3>
-        <h4>Reviews:</h4>
-        <ul>
-            {reviewAndUsers.map(review => <><li key={counter++}>{review && review.description }</li> <h4>{`posted by ${review && review.username} on ${review && review.date}`}</h4></>)}
-        </ul>
-
-
+        {reviewAndUsers.length ? <> <h4>Reviews:</h4>  {reviewAndUsers.map(review => <><div key={counter++}>{review && review.description }</div> <h4>{`posted by ${review && review.username} on ${review && review.date}`}</h4></>)}  </> : <><h4>No reviews yet.</h4></>}   
+       
         {userId && (
             <div>
                 <form onSubmit={submitBookingFunc}>
@@ -189,13 +193,13 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
                     {bookingCheck ? 
                     
                     <div>
-                        <button>Book Date</button>
+                        <button onClick={() => alert('Date has been booked!')}>Book Date</button>
                     </div> 
                     
                     : 
                     
                     <div>
-                        <h3> Date already booked.. </h3>
+                        <h3> Date already booked. </h3>
                     </div>
                     }
                 </form>
