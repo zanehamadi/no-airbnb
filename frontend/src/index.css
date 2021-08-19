@@ -1,1 +1,18 @@
 /* TODO Add site wide styles */
+
+
+#root{
+    z-index: 0;
+    position: relative;
+    height: 100%;
+    
+}
+
+body{
+    padding: 0 25%;
+    margin: 0;
+    /* background-color: black;
+    color: white; */
+    /* background-color: aliceblue; */
+    background-color: oldlace;
+}

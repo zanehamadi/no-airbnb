@@ -4,6 +4,7 @@ import { addReview } from "../../store/reviews"
 import {bookDate} from "../../store/bookings"
 import { useDispatch, useSelector } from "react-redux"
 import Calendar from 'react-calendar';
+import { useHistory } from "react-router"
 
 
 
@@ -13,10 +14,17 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
     const session = useSelector(state => state.session);
     const planetIdObj = useParams()
     const planetId = planetIdObj.id
-    const planet = planets?.find(planet => +planet.id === +planetId)
+    const planet = planets?.find(planet => +planet?.id === +planetId)
     const user = users?.find(user => +planet?.user_id === +user.id)
-    const solarSystem = solarSystems?.find(solarSystem => +planet.solar_system_id === +solarSystem.id)
+    const solarSystem = solarSystems?.find(solarSystem => +planet?.solar_system_id === +solarSystem?.id)
+    let history = useHistory()
+
+    const historyRedirect = () => {
+        history.push('/')
+    }
     
+
+
     let reviewAndUsers = []
     
     let counter = 0
@@ -39,6 +47,15 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         reviewObj.username = username
         let date = (new Date(review.createdAt)).toDateString()
         reviewObj.date = date
+
+        let stars = ''
+        if(review?.rating === 1) stars = '⭐'
+        if(review?.rating === 2) stars = '⭐⭐'
+        if(review?.rating === 3) stars = '⭐⭐⭐'
+        if(review?.rating === 4) stars = '⭐⭐⭐⭐'
+        if(review?.rating === 5) stars = '⭐⭐⭐⭐⭐'
+        reviewObj.stars = stars
+
 
         reviewAndUsers.push(reviewObj)
     })
@@ -177,12 +194,16 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
 
     
     return(
+
+        <>
+        {
+        planet ?
         <>
         <h2>{planet && planet.name }</h2>
         <h2>{user && `Owned by ${user.username}`}</h2>
         <h3>{solarSystem && solarSystem.name}</h3>
         <h3>{planet && `Temperature: ${message}`}</h3>
-        {reviewAndUsers.length ? <> <h4>Reviews:</h4>  {reviewAndUsers.map(review => <><div key={counter++}>{review && review.description }</div> <h4>{`posted by ${review && review.username} on ${review && review.date}`}</h4></>)}  </> : <><h4>No reviews yet.</h4></>}   
+        {reviewAndUsers.length ? <> <h4>Reviews:</h4>  {reviewAndUsers.map(review => <><div key={counter++}>{review && review.description }</div>   <div>{review.stars}</div>  <h4>{`posted by ${review && review.username} on ${review && review.date}`}</h4> </>)}  </> : <><h4>No reviews yet.</h4></>}   
        
         {userId && (
             <div>
@@ -219,6 +240,14 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
                 <button disabled={reviewValidations.length > 0}>Post</button>
             </form>
         </div>)}
+        </> :
+        <>
+        <h2>
+            Planet Not Found.
+        </h2>
+        <button onClick={historyRedirect}>Return Home.</button>
+        </>
+        }
         </>
     )
 }

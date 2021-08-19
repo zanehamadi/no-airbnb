@@ -17,6 +17,7 @@ export default function User({planets, bookings, reviews, users}){
     const [userReviews, setUserReviews] = useState([]);
 
 
+
     useEffect(() => {
 
         let formattedReviews = []
@@ -107,7 +108,7 @@ export default function User({planets, bookings, reviews, users}){
                 {userReviews.map(review => 
                 <>
                 <div>{`"${review.description}" - ${review.planet}`}</div>
-                <div>{review.stars}</div>
+                {review.stars} {yourprofile ? <div><button>delete</button> </div> : <></>}
                 </>
                 )
             }
@@ -119,7 +120,10 @@ export default function User({planets, bookings, reviews, users}){
                     <h3>Bookings</h3>
                     { userBookings?.map(booking => 
                     <>
-                    <div> <Link to={`/planets/${booking.planetId}`}>{booking.planet}</Link>{` on ${booking.startDate} to ${booking.endDate}`}</div>
+                        <div> 
+                            <Link to={`/planets/${booking.planetId}`}>{booking.planet}</Link>{` on ${booking.startDate} to ${booking.endDate}`}
+                            <button>delete</button>
+                        </div>
                     </>
                     )} 
             </>
@@ -128,7 +132,12 @@ export default function User({planets, bookings, reviews, users}){
             {userPlanets.length !== 0 ? 
             <div>
                 <h2>{`${user?.username}'s Planets`}</h2>
-                {userPlanets.map(planet => <div><Link to={`/planets/${planet.id}`}>{planet.name}</Link></div>)}
+                {userPlanets.map(planet => 
+                    <div>
+                        <Link to={`/planets/${planet.id}`}>
+                            {planet.name}
+                        </Link>
+                    </div>)}
             </div>
             :
             <>

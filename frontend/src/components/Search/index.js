@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import {Link} from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import './search.css'
 
 
 
@@ -14,15 +15,9 @@ export default function Search({solarSystems, planets, bookings}){
     // const [startDate, setStartDate] = useState('')
     // const [endDate, setEndDate] = useState('')
     const [date, setDate] = useState(new Date())
+    const [flexible, setFlexible] = useState(false)
 
 
-    const resetFunction = () => {
-        setTemp('')
-        setSystem('All')
-        setName('')
-        setSearchPlanets([])
-        setDate(new Date())
-    }
 
 
 
@@ -32,7 +27,9 @@ export default function Search({solarSystems, planets, bookings}){
         if((name || temp) || (system )){
             
             let planetsArr = planets
-
+            
+        
+            
             if(name) {
                 planetsArr = planetsArr.filter(planet => ((planet.name).toUpperCase()).includes((name.toUpperCase())))
             }
@@ -86,10 +83,11 @@ export default function Search({solarSystems, planets, bookings}){
                     return checker
                 })
             }
-            
-
-            setSearchPlanets(planetsArr)
+            if(date[1] || (name || temp || system !== 'All')){
+                setSearchPlanets(planetsArr)
+            }
         }
+
 
         
 
@@ -97,8 +95,19 @@ export default function Search({solarSystems, planets, bookings}){
 
     }, [temp, system, name, date])
 
+
+    const resetFunction = () => {
+        setTemp('')
+        setSystem('All')
+        setName('')
+        setDate(new Date())
+        setSearchPlanets([])
+    }
+
+
     return(
-        <form>
+        <form id='searchForm'>
+
             <input placeholder={'Planet Name'} value={name} onChange={e => setName(e.target.value)}></input>
             
             <label> Multiplanetary Systems
@@ -118,11 +127,9 @@ export default function Search({solarSystems, planets, bookings}){
             <button type='button' onClick={ () => resetFunction()}>Reset</button>
 
 
-            <div>
+            <div style={{zIndex:-1},{position:'absolute'}}>
                 {searchPlanets.length !== 0 ?                     
-                <ul>
-                    {searchPlanets.map(planet => <li><Link to={`/planets/${planet.id}`}>{planet.name}</Link></li>)}
-                </ul> 
+                    searchPlanets.map(planet => <div><Link to={`/planets/${planet.id}`}>{planet.name}</Link></div>)
             : <></>}
             </div>
 
