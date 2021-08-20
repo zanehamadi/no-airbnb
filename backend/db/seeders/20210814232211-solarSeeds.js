@@ -9,6 +9,27 @@ module.exports = {
       {
         name: 'Proxima Centauri'
       },
+      {
+        name: 'Midreon System'
+      },
+      {
+        name: 'Elia'
+      },
+      {
+        name: 'Inevis'
+      },
+      {
+        name: 'Zugantu'
+      },
+      {
+        name: 'Lobupra'
+      },
+      {
+        name: 'Georia'
+      },
+      {
+        name: 'Agonerth'
+      }
     ], {})
 
   },
