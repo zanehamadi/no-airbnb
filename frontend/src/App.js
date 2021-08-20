@@ -52,8 +52,8 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            <Search solarSystems={solarSystems} planets={planets} bookings={bookings}/>
             <Home/>
+            <Search solarSystems={solarSystems} planets={planets} bookings={bookings}/>
           </Route>
           <Route exact path={`/users/:id`}>
             <User users={users} planets={planets} bookings={bookings} reviews={reviews}/> 

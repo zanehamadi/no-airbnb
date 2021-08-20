@@ -4,13 +4,13 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Solar_Systems',[
       {
-        name: 'Solar System'
+        name: 'Solar'
       },
       {
         name: 'Proxima Centauri'
       },
       {
-        name: 'Midreon System'
+        name: 'Midreon'
       },
       {
         name: 'Elia'
@@ -29,6 +29,9 @@ module.exports = {
       },
       {
         name: 'Agonerth'
+      },
+      {
+        name: 'Hod'
       }
     ], {})
 

@@ -14,5 +14,25 @@ body{
     /* background-color: black;
     color: white; */
     /* background-color: aliceblue; */
-    background-color: oldlace;
+    background-color: black;
+    color: white;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}
+
+button{
+    background-color: black;
+}
+
+
+*{
+    font-family: monospace;
+}
+
+
+
+
