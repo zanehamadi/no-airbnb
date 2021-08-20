@@ -75,6 +75,24 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
     const [date, setDate] = useState(new Date());
     const [bookingCheck, setBookingCheck] = useState(true)
 
+    // RATING-CLICK
+    const ratingHandler = (e) => {
+        const revRating = +(e.target.id[0])
+        console.log(revRating)
+        setRating(revRating)
+        const stArr = Array.from(document.querySelectorAll(".fa-star"))
+    
+        for(let i = 0 ; i < revRating ; i++){
+            stArr[i].classList.remove("far")
+            stArr[i].classList.add("fas")
+
+        }
+        for(let i = revRating ; i < 5 ; i++){
+            stArr[i].classList.remove("fas")
+            stArr[i].classList.add("far")
+        }
+    }
+
 
     console.log('DATE:', date[0])
     useEffect(() => {
@@ -250,11 +268,11 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         {userId && canReview && (<div>
             <form onSubmit={submitReviewFunc}>
                 <h3>Have you been here? Post a review!</h3>
-                <button type='button' value={1} onClick={() => setRating(1)}><i class="far fa-star"></i></button>
-                <button type='button' value={2} onClick={() => setRating(2)}><i class="far fa-star"></i></button>
-                <button type='button' value={3} onClick={() => setRating(3)}><i class="far fa-star"></i></button>
-                <button type='button' value={4} onClick={() => setRating(4)}><i class="far fa-star"></i></button>
-                <button type='button' value={5} onClick={() => setRating(5)}><i class="far fa-star"></i></button>
+                <span onClick={ratingHandler}><i className="far fa-star" id="1star"></i></span>
+                <span onClick={ratingHandler}><i className="far fa-star" id="2star"></i></span>
+                <span onClick={ratingHandler}><i className="far fa-star" id="3star"></i></span>
+                <span onClick={ratingHandler}><i className="far fa-star" id="4star"></i></span>
+                <span onClick={ratingHandler}><i className="far fa-star" id="5star"></i></span>
 
                 <textarea value={description} onChange={e => setDescription(e.target.value)}></textarea>
                 <button disabled={reviewValidations.length > 0}>Post</button>

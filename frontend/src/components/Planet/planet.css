@@ -4,3 +4,6 @@ img{
     height: 200px;
     border: solid white
 }
+.fa-star:hover{
+    color: yellow;
+}
