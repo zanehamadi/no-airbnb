@@ -260,7 +260,7 @@ module.exports = {
           user_id: 10,
           solar_system_id: 8,
           temperature: 2,
-          imgUrl: 'https://i.imgur.com/K2FdKys.png'
+          imgUrl: 'https://i.imgur.com/xqUe7LG.png'
         },
         {
           name: 'Narvis AQ',

@@ -9,7 +9,7 @@ export default function  Home(){
 
     const [isLogged, setIsLogged] = useState(false);
 
-    let randNum = Math.floor(Math.random(1) * 25)
+    let randNum = Math.floor(Math.random(1) * 25) + 1
 
     console.log(randNum)
 
