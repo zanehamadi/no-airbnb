@@ -1,0 +1,20 @@
+.navDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.homeClick{
+    background-color: black;
+    width: 10em;
+}
+
+.homeClick:hover{
+    background-color: rgb(42, 42, 42);
+}
+
+
+button{
+    background-color: white;
+    border: 0px outset white;
+    border-radius: 0px;
+}

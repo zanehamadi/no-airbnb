@@ -114,7 +114,7 @@ export default function Search({solarSystems, planets, bookings}){
 
     return(
         <>
-        <button value={showSearch}  onClick={() => setShowSearch(true)} style={{display:`${display}`}}>Search</button>
+        <button value={showSearch}  onClick={() => setShowSearch(true)} style={{display:`${display}`}}>Click here to find your destination</button>
         {showSearch ? 
         <>
         <button onClick={() => setShowSearch(false)}>Hide</button>
@@ -133,7 +133,7 @@ export default function Search({solarSystems, planets, bookings}){
             <label>
                 {/* <input type='date' value={startDate} onChange={e => setStartDate(e.target.value)}/> */}
                 Duration of stay
-                <Calendar value={date} onChange={setDate} selectRange={true}/>
+                <Calendar value={date} onChange={setDate} selectRange={true} className="searchCalendar"/>
             </label>
             <button type='button' onClick={ () => resetFunction()}>Reset</button>
 

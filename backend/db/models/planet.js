@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
     solar_system_id: DataTypes.INTEGER,
-    temperature: DataTypes.STRING
+    temperature: DataTypes.STRING,
+    imgUrl: DataTypes.STRING
   }, {});
   Planet.associate = function(models) {
     // associations can be defined here

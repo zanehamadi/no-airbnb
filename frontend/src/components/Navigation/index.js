@@ -20,26 +20,30 @@ function Navigation({ isLoaded, planets}){
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/login"><div className="homeClick">Log In</div></NavLink>
+        <NavLink to="/signup"><div className="homeClick">Sign Up </div></NavLink>
       </>
     );
   }
 
   return (
-        <div>
-          <NavLink exact to="/"> Home </NavLink>
-          <NavLink exact to= '/planets'> Planets </NavLink>
+        <div className="navDiv">
+          <NavLink exact to="/"><div className="homeClick">Home </div> </NavLink>
+          <NavLink exact to= '/planets'> <div className="homeClick">Planets</div> </NavLink>
           {id ? 
             <>
               <NavLink to={`/users/${id}`}>
+              <div className="homeClick">
                 Profile
+                </div>
               </NavLink>
             </> 
             :
              <></>}
             <NavLink to={'/planets'}>
+            <div className="homeClick">
               All Planets
+              </div>
             </NavLink>
           {isLoaded && sessionLinks}
         </div>

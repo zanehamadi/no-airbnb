@@ -23,6 +23,9 @@ module.exports = {
       temperature: {
         type: Sequelize.INTEGER
       },
+      imgUrl: {
+        type: Sequelize.STRING(600),
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
