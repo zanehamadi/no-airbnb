@@ -1,3 +1,38 @@
 #searchForm{
     position: relative;
 }
+
+#searchForm{
+    display: flex;
+    flex-direction: column;
+}
+
+#searchForm > * {
+    margin-top: .4em;
+    margin-bottom: .4em;
+}
+
+#searchForm > input{
+    width: 10em;
+
+}
+
+.resetButton:hover{
+    background-color: rgb(42, 42, 42);
+}
+
+.resetButton{
+    width: fit-content;
+}
+
+.searchResults{
+    margin-top: 1em;
+}
+
+.collapseButton{
+    margin-top: 1em;
+}
+
+
+
+

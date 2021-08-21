@@ -114,10 +114,10 @@ export default function Search({solarSystems, planets, bookings}){
 
     return(
         <>
-        <button value={showSearch}  onClick={() => setShowSearch(true)} style={{display:`${display}`}}>Click here to find your destination</button>
+        <button className="collapseButton"  value={showSearch}  onClick={() => setShowSearch(true)} style={{display:`${display}`}}>Click here to find your destination</button>
         {showSearch ? 
         <>
-        <button onClick={() => setShowSearch(false)}>Hide</button>
+        <button  className="collapseButton" onClick={() => setShowSearch(false)}>Hide</button>
         <form id='searchForm'>
             <input placeholder={'Planet Name'} value={name} onChange={e => setName(e.target.value)}></input>
             
@@ -128,17 +128,17 @@ export default function Search({solarSystems, planets, bookings}){
             </select>
             </label>
             <label> Desired Temperature
-                <input type='range' min='1' max='10'  value={temp} onChange={e => setTemp(e.target.value)}/> {temp}
+               <span> <input type='range' min='1' max='10'  value={temp} onChange={e => setTemp(e.target.value)}/> {temp} </span>
             </label>
             <label>
                 {/* <input type='date' value={startDate} onChange={e => setStartDate(e.target.value)}/> */}
                 Duration of stay
                 <Calendar value={date} onChange={setDate} selectRange={true} className="searchCalendar"/>
             </label>
-            <button type='button' onClick={ () => resetFunction()}>Reset</button>
+            <span className="resetButton" onClick={ () => resetFunction()}>Reset</span>
 
 
-            <div style={{zIndex:-1},{position:'absolute'}}>
+            <div className="searchResults">
                 {searchPlanets.length !== 0 ?                     
                     searchPlanets.map(planet => <div><Link to={`/planets/${planet.id}`}>{planet.name}</Link></div>)
             : <></>}
