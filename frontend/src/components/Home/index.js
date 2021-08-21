@@ -30,7 +30,7 @@ export default function  Home(){
                 <>
                     <h1>no airbnb</h1>
                     <h2>{`${welcomeMessage}`}</h2>
-                    <span><Link to={`/users/${user?.id}`}>Visit Profile</Link></span>
+                    <span><Link to={`/users/${user?.id}`} id="homeButton">Visit Profile</Link></span>
                     <h2>Explore the stars</h2>
                 </> 
                 : 

@@ -230,11 +230,11 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
             <> 
                 <h4>Reviews:</h4>  
                 {reviewAndUsers.map(review => 
-                    <>
+                    <div className="reviewBlock">
                         <div key={review?.id}>{review && review.description }</div>  
                         <div>{review.stars}</div> 
-                        <h4> posted by <Link to={`/users/${review.userId}`}>{review && review.username}</Link> {`on ${review && review.date}`}</h4> 
-                    </>
+                        <h4 className="postedLine"> posted by <Link to={`/users/${review.userId}`} className="userReviewLink">{review && review.username}</Link> {`on ${review && review.date}`}</h4> 
+                    </div>
                 )}  
 
             </>

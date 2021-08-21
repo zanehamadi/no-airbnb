@@ -128,7 +128,7 @@ export default function Search({solarSystems, planets, bookings}){
             </select>
             </label>
             <label> Desired Temperature
-               <span> <input type='range' min='1' max='10'  value={temp} onChange={e => setTemp(e.target.value)}/> {temp} </span>
+               <span> <input type='range' min='1' max='10'  value={temp} onChange={e => setTemp(e.target.value)} id="tempScale"/> {temp} </span>
             </label>
             <label>
                 {/* <input type='date' value={startDate} onChange={e => setStartDate(e.target.value)}/> */}
@@ -140,7 +140,7 @@ export default function Search({solarSystems, planets, bookings}){
 
             <div className="searchResults">
                 {searchPlanets.length !== 0 ?                     
-                    searchPlanets.map(planet => <div><Link to={`/planets/${planet.id}`}>{planet.name}</Link></div>)
+                    searchPlanets.map(planet => <div><Link to={`/planets/${planet.id}`} className='oneResult'>{planet.name}</Link></div>)
             : <></>}
 
             </div>

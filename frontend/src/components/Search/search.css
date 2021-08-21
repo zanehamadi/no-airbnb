@@ -31,7 +31,24 @@
 
 .collapseButton{
     margin-top: 1em;
+    margin-bottom: 2%;
 }
+
+.collapseButton:hover{
+    cursor: pointer;
+}
+
+.oneResult:hover{
+    background-color: rgb(42, 42, 42);
+}
+
+#tempScale{
+    background-color: white;
+}
+#tempScale:hover{
+    cursor: pointer;
+}
+
 
 
 
