@@ -1,11 +1,11 @@
 .navDiv{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .homeClick{
     background-color: black;
-    width: 10em;
+    width: fit-content;
 }
 
 .homeClick:hover{
@@ -17,6 +17,14 @@ button{
     background-color: white;
     border: 0px outset white;
     border-radius: 0px;
+}
+
+.profile-dropdown{
+    position: absolute;
+    right: 0px;
+    list-style-type: none;
+    text-align:right;
+    top: 10px;
 }
 
 

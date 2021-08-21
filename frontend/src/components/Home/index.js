@@ -30,14 +30,14 @@ export default function  Home(){
                 <>
                     <h1>no airbnb</h1>
                     <h2>{`${welcomeMessage}`}</h2>
-                    <button><Link to={`/users/${user?.id}`}>Visit Profile</Link></button>
+                    <span><Link to={`/users/${user?.id}`}>Visit Profile</Link></span>
                     <h2>Explore the stars</h2>
                 </> 
                 : 
                 <>
                 <h1>no airbnb</h1>
-                <Link to={'/signup'}><div className="homeClick">create an account</div></Link>
-                <Link to={'/login'}><div className="homeClick">sign in</div></Link>
+                <Link to={'/signup'}><div className="logoutBut">create an account</div></Link>
+                <Link to={'/login'}><div className="logoutBut">sign in</div></Link>
                 </>}
         </>
     )

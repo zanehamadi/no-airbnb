@@ -2,8 +2,19 @@
 .homeClick{
     background-color: black;
     width: 10em;
+    text-align: center;
 }
 
 .homeClick:hover{
     background-color: rgb(42, 42, 42);
 }
+
+.logoutBut{
+    background-color: black;
+    width: 10em;
+}
+
+.logoutBut:hover{
+    background-color: rgb(42, 42, 42);
+}
+
