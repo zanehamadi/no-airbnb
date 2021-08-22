@@ -74,7 +74,7 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
     const [userId, setUserId] = useState(null);
     const [date, setDate] = useState(new Date());
     const [bookingCheck, setBookingCheck] = useState(true)
-    const [randMsg, setRandMsg] = useState('')
+    // const [randMsg, setRandMsg] = useState('')
     const [numTemp, setNumTemp] = useState('')
 
     // RATING-CLICK
@@ -200,21 +200,23 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
 
 
 
-    let randNum = Math.floor(Math.random(1) * 7)
-
-    useEffect(() => {
-        const temp = planet?.temperature
-        const gr1 = ['"Freezing cold!"', '"My fingers hurt"', `"I can't feel my lips`, '"It hurts to blink"', `"I can't feel my face"`, `"I wish I brought a jacket"`, `"Freezing"`]
-        const gr2 = ['"Feels like Cali!"', `"Nice swimmin' weather"`, '"Cozy coco nights"', `"Feels like home"`, `"Swim and snowboard in the same day"`, `"Like Earth!"`, `"Relaxation"`]
-        const gr3 = ['"Someone turn the A/C on please"', '"I can see my sweat evaporating"', '"Definitely a sandals day"', `"Probably shouldn't have booked a week"`, `"Feels like being microwaved"`,`"The pavement feels like lava"`, `"What a mistake"`]
-        const gr4 = ['"Eyes may burn out of socket"', '"Body hair will be flammable"', '"Hell"', `"Everything burns"`, `"It hurts to breathe"`, `"Feels like you're walking on the surface of a star"`, `"DON'T COME HERE"`]
+    // let randNum = Math.floor(Math.random(1) * 7)
 
 
-        if (temp <= 2)  setRandMsg(gr1[randNum])
-        else if (temp === 3) setRandMsg(gr2[randNum])
-        else if (temp <= 6)  setRandMsg(gr3[randNum])
-        else if (temp <= 10) setRandMsg(gr4[randNum])
-    });
+    // Caused too much lag
+    // useEffect(() => {
+    //     const temp = planet?.temperature
+    //     const gr1 = ['"Freezing cold!"', '"My fingers hurt"', `"I can't feel my lips`, '"It hurts to blink"', `"I can't feel my face"`, `"I wish I brought a jacket"`, `"Freezing"`]
+    //     const gr2 = ['"Feels like Cali!"', `"Nice swimmin' weather"`, '"Cozy coco nights"', `"Feels like home"`, `"Swim and snowboard in the same day"`, `"Like Earth!"`, `"Relaxation"`]
+    //     const gr3 = ['"Someone turn the A/C on please"', '"I can see my sweat evaporating"', '"Definitely a sandals day"', `"Probably shouldn't have booked a week"`, `"Feels like being microwaved"`,`"The pavement feels like lava"`, `"What a mistake"`]
+    //     const gr4 = ['"Eyes may burn out of socket"', '"Body hair will be flammable"', '"Hell"', `"Everything burns"`, `"It hurts to breathe"`, `"Feels like you're walking on the surface of a star"`, `"DON'T COME HERE"`]
+
+
+    //     if (temp <= 2)  setRandMsg(gr1[randNum])
+    //     else if (temp === 3) setRandMsg(gr2[randNum])
+    //     else if (temp <= 6)  setRandMsg(gr3[randNum])
+    //     else if (temp <= 10) setRandMsg(gr4[randNum])
+    // });
 
 
     useEffect(() => {
@@ -241,20 +243,20 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         {
         planet ?
         <>
-        <h2>{planet && planet.name }</h2>
+        <h1 id="planetName">{planet && planet.name }</h1>
         { planet?.imgUrl ? <img src={`${planet?.imgUrl}`}/> : <></> }
-        <div className="ownerNameDisplay"> <h2>Owned by <Link to={`/users/${user?.id}`}>{user && `${user.username}`}</Link></h2> </div>
+        <div className="ownerNameDisplay"> <h2>Owned by <Link to={`/users/${user?.id}`} id="planetOwner">{user && `${user.username}`}</Link></h2> </div>
         <h3>{solarSystem && solarSystem.name}</h3>
         <h3>{planet && `Temperature: ${numTemp}`}</h3>
-        <h4 id="randMsg"><em>{randMsg}</em></h4>
+        {/* <h4 id="randMsg"><em>{randMsg}</em></h4> */}
         {reviewAndUsers.length ? 
             <> 
-                <h3>Reviews:</h3>  
+                <h3 id="revHeader">Reviews:</h3>  
                 {reviewAndUsers.map(review => 
                     <div className="reviewBlock">
-                        <div key={review?.id}>{review && review.description }</div>  
-                        <div>{review.stars}</div> 
-                        <h4 className="postedLine"> posted by <Link to={`/users/${review.userId}`} className="userReviewLink">{review && review.username}</Link> {`on ${review && review.date}`}</h4> 
+                        <div key={review?.id} className="reviewContent">{review && review.description }</div>  
+                        <div className="reviewStars reviewContent">{review.stars}</div> 
+                        <h4 className="postedLine reviewContent"> posted by <Link to={`/users/${review.userId}`} className="userReviewLink">{review && review.username}</Link> {`on ${review && review.date}`}</h4> 
                     </div>
                 )}  
 
@@ -287,14 +289,25 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         )}
 
         {userId && canReview && (<div>
-            <form onSubmit={submitReviewFunc}>
+            <form onSubmit={submitReviewFunc} className="reviewForm">
                 <h3>Have you been here? Post a review!</h3>
+                <ul>
+                    {
+                    reviewValidations ? 
+                    <>
+                        {reviewValidations.map(valid => <li>{valid}</li>)}
+                    </> 
+                    : 
+                    <></>}
+                </ul>
+                <span>
+                <span id="ratingText">Rating:</span>
                 <span onClick={ratingHandler}><i className="far fa-star" id="1star"></i></span>
                 <span onClick={ratingHandler}><i className="far fa-star" id="2star"></i></span>
                 <span onClick={ratingHandler}><i className="far fa-star" id="3star"></i></span>
                 <span onClick={ratingHandler}><i className="far fa-star" id="4star"></i></span>
                 <span onClick={ratingHandler}><i className="far fa-star" id="5star"></i></span>
-
+                </span>
                 <textarea value={description} onChange={e => setDescription(e.target.value)}></textarea>
                 <button disabled={reviewValidations.length > 0}>Post</button>
             </form>

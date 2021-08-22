@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { destroyAReview } from "../../store/reviews";
 import { destroyABooking } from "../../store/bookings";
+import "./user.css"
 
 export default function User({planets, bookings, reviews, users}){
     
@@ -93,6 +94,10 @@ export default function User({planets, bookings, reviews, users}){
             planet = planet.name
             reviewObj.planet = planet
 
+            let planetId = review.planet_id
+            reviewObj.planetId = planetId
+
+
             let id = review.id
             reviewObj.id = id
             formattedReviews.push(reviewObj)
@@ -115,10 +120,12 @@ export default function User({planets, bookings, reviews, users}){
             <div>
                 <h3>Reviews</h3>
                 {userReviews.map(review => 
-                <>
-                <div>{`"${review.description}" - ${review.planet}`}</div>
-                {review.stars} {yourprofile ? <div><button onClick={() => deleteReviewFunc(review.id)}>delete</button> </div> : <></>}
-                </>
+                <div className="specUserRev">
+                <div className="specUserRevDesc">{`"${review.description}"`}</div>
+                <span><Link className="specUserRevPlanetName" to={`/planets/${review.planetId}`}>{review.planet}</Link></span>
+                <div> {review.stars} </div> 
+                {yourprofile ? <div><button className="deleteReviewButton specUserRev" onClick={() => deleteReviewFunc(review.id)}>delete</button> </div> : <></>}
+                </div>
                 )
             }
             </div> : 
@@ -131,7 +138,7 @@ export default function User({planets, bookings, reviews, users}){
                     <>
                         <div> 
                             <Link to={`/planets/${booking.planetId}`}>{booking.planet}</Link>{` on ${booking.startDate} to ${booking.endDate}`}
-                            <button onClick={() => deleteBookingFunc(booking.id)}>delete</button>
+                            <button id="deleteBooking" onClick={() => deleteBookingFunc(booking.id)}>delete</button>
                         </div>
                     </>
                     )} 

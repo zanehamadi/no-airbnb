@@ -119,12 +119,12 @@ export default function Search({solarSystems, planets, bookings}){
         <>
         <button  className="collapseButton" onClick={() => setShowSearch(false)}>Hide</button>
         <form id='searchForm'>
-            <input placeholder={'Planet Name'} value={name} onChange={e => setName(e.target.value)}></input>
+            <input placeholder={'Planet Name'} value={name} className="searchInput" onChange={e => setName(e.target.value)}></input>
             
             <label> Multiplanetary Systems
-            <select value={system} onChange={e => setSystem(e.target.value)}>
+            <select id="systemSelect" value={system} onChange={e => setSystem(e.target.value)}>
                 <option key='7331'>All</option>
-                {solarSystems.map(system => <option key={system.id}>{system.name}</option>)}
+                {solarSystems.map(system => <option className="systemSelectSpec" key={system.id}>{system.name}</option>)}
             </select>
             </label>
             <label> Desired Temperature

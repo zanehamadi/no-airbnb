@@ -6,20 +6,60 @@ img{
 }
 .fa-star:hover{
     color: yellow;
+    cursor: pointer;
+}
+
+.fa-star{
+    margin-bottom: 2%;
 }
 
 .reviewBlock{
-    margin-top: 5%;
     margin-bottom: 5%;
 }
 
 .postedLine{
-    margin-left: 5%;
+    margin-left: 3%;
 }
 
 .userReviewLink:hover{
     background-color: rgb(42, 42, 42);
 }
+
+#revHeader{
+    margin-top: 5%;
+}
+
+#planetName{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.reviewForm{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%
+}
+
+
+#ratingText{
+    margin-right: 1%;
+    font-size: 13pt;
+}
+
+
+.reviewStars{
+    margin-top: 2%;
+}
+
+.reviewContent{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#planetOwner:hover{
+    background-color: rgb(51, 50, 50);
+}
+
 
 /* #randMsg{
     font-style: italic;

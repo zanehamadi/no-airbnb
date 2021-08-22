@@ -29,7 +29,6 @@ function Navigation({ isLoaded, planets}){
   return (
         <div className="navDiv">
           <NavLink exact to="/"><div className="homeClick">Home </div> </NavLink>
-          <NavLink exact to= '/planets'> <div className="homeClick">Planets</div> </NavLink>
           {id ? 
             <>
               <NavLink to={`/users/${id}`}>

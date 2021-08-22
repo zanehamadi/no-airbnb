@@ -19,6 +19,7 @@
 
 .resetButton:hover{
     background-color: rgb(42, 42, 42);
+    cursor: pointer;
 }
 
 .resetButton{
@@ -46,6 +47,22 @@
     background-color: white;
 }
 #tempScale:hover{
+    cursor: pointer;
+}
+
+.searchInput{
+    margin-left: 0%;
+}
+
+.collapseButton:hover{
+    background-color: rgb(216, 216, 216);
+}
+
+#systemSelect:hover{
+    cursor: pointer;
+}
+
+.systemSelectSpec:hover{
     cursor: pointer;
 }
 

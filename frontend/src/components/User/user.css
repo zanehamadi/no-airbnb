@@ -1,0 +1,28 @@
+#deleteBooking{
+    margin-left: 1%
+}
+
+#deleteBooking:hover{
+    cursor: pointer;
+}
+
+.deleteReviewButton:hover{
+    cursor: pointer;
+}
+
+.specUserRevDesc{
+    margin-top: 2%;
+}
+.specUserRev{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#specUserRevPlanetName:hover{
+    cursor: pointer;
+}
+
+#specUserRevPlanetName{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}

@@ -3,12 +3,13 @@
     flex-direction: column;
 }
 
-.submitLog:hover{
-    background-color: rgb(42, 42, 42);
+.submitLogButton{
+    width: fit-content;
 }
 
-.submitLog{
-    width: fit-content;
+.submitLogButton:hover{
+    cursor: pointer;
+    background-color: rgb(216, 216, 216);
 }
 
 input{
