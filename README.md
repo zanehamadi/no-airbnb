@@ -1,3 +1,3 @@
 # no-airbnb
 
-An galactic airbnb clone, where you can search, rent and review planets.
+A galactic airbnb clone, where you can search, rent and review planets.
