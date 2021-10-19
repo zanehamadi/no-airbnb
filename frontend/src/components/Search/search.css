@@ -1,11 +1,11 @@
 #searchForm{
     position: relative;
-}
-
-#searchForm{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
 }
+
 
 #searchForm > * {
     margin-top: .4em;
@@ -27,7 +27,7 @@
 }
 
 .searchResults{
-    margin-top: 1em;
+    margin-top: 10vh;
 }
 
 .collapseButton{
@@ -45,17 +45,27 @@
 
 #tempScale{
     background-color: white;
+    margin-left: 1vw;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+
 }
 #tempScale:hover{
     cursor: pointer;
 }
 
 .searchInput{
-    margin-left: 0%;
+    margin-left: 1vw;
+    margin-bottom: 2vh;
+
 }
 
 .collapseButton:hover{
     background-color: rgb(216, 216, 216);
+}
+
+#systemSelect{
+    margin-left: 1vw;
 }
 
 #systemSelect:hover{
@@ -65,6 +75,23 @@
 .systemSelectSpec:hover{
     cursor: pointer;
 }
+
+.searchContainer{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: space-between
+}
+
+.searchCalendar{
+    margin-top: 2vh;
+}
+
+.oneResult{
+    font-size: 15px;
+}
+
 
 
 

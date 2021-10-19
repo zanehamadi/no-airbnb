@@ -113,42 +113,41 @@ export default function Search({solarSystems, planets, bookings}){
 
 
     return(
-        <>
-        <button className="collapseButton"  value={showSearch}  onClick={() => setShowSearch(true)} style={{display:`${display}`}}>Click here to find your destination</button>
-        {showSearch ? 
-        <>
-        <button  className="collapseButton" onClick={() => setShowSearch(false)}>Hide</button>
-        <form id='searchForm'>
-            <input placeholder={'Planet Name'} value={name} className="searchInput" onChange={e => setName(e.target.value)}></input>
-            
-            <label> Multiplanetary Systems
-            <select id="systemSelect" value={system} onChange={e => setSystem(e.target.value)}>
-                <option key='7331'>All</option>
-                {solarSystems.map(system => <option className="systemSelectSpec" key={system.id}>{system.name}</option>)}
-            </select>
-            </label>
-            <label> Desired Temperature
-               <span> <input type='range' min='1' max='10'  value={temp} onChange={e => setTemp(e.target.value)} id="tempScale"/> {temp} </span>
-            </label>
-            <label>
-                {/* <input type='date' value={startDate} onChange={e => setStartDate(e.target.value)}/> */}
-                Duration of stay
-                <Calendar value={date} onChange={setDate} selectRange={true} className="searchCalendar"/>
-            </label>
-            <span className="resetButton" onClick={ () => resetFunction()}>Reset</span>
+        <div className='searchContainer'>
+            <h2>Find your destination.</h2>
+            <form id='searchForm'>
+                <label> Name
+                    <input placeholder={'Planet Name'} value={name} className="searchInput" onChange={e => setName(e.target.value)} ></input>
+                </label>
+
+                <label> Multiplanetary Systems
+                <select id="systemSelect" value={system} onChange={e => setSystem(e.target.value)}>
+                    <option key='7331'>All</option>
+                    {solarSystems.map(system => <option className="systemSelectSpec" key={system.id}>{system.name}</option>)}
+                </select>
+                </label>
+                <label> Desired Temperature
+                   <span> <input type='range' min='1' max='10'  value={temp} onChange={e => setTemp(e.target.value)}    id="tempScale"/> {temp} </span>
+                </label>
+                <label>
+                    {/* <input type='date' value={startDate} onChange={e => setStartDate(e.target.value)}/> */}
+                    Duration of stay
+                    <Calendar value={date} onChange={setDate} selectRange={true} className="searchCalendar"/>
+                </label>
+                <span className="resetButton" onClick={ () => resetFunction()}>Reset</span>
 
 
-            <div className="searchResults">
-                {searchPlanets.length !== 0 ?                     
-                    searchPlanets.map(planet => <div><Link to={`/planets/${planet.id}`} className='oneResult'>{planet.name}</Link></div>)
-            : <></>}
+                <div className="searchResults">
+                    {searchPlanets.length !== 0 ?                     
+                        searchPlanets.map(planet => <div><Link to={`/planets/${planet.id}`} className='oneResult'>{planet.name} </Link></div>)
+                : <></>}
 
-            </div>
+                </div>
 
 
-        </form>
-        </> : <> </>}
-        </>
+            </form>
+        </div>
+        
     )
 }
 

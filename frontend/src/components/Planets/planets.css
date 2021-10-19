@@ -1,3 +1,12 @@
 .planetsResults:hover{
     background-color: rgb(42, 42, 42);
 }
+
+.planetContainer{
+}
+
+.planetPageContainer{
+    height: 100vh;
+    display: grid;
+    grid-column: 33% 33% 33%;
+}
