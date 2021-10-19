@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import { login } from '../../store/session';
 import * as sessionActions from '../../store/session';
 
 
@@ -33,7 +32,7 @@ function Navigation({ isLoaded, planets}){
       <>
         <NavLink to="/login"><div className="homeClick">Log In</div></NavLink>
         <NavLink to="/signup"><div className="homeClick">Sign Up </div></NavLink>
-        <span onClick={demoButtonFunction}>Demo</span>
+        <span onClick={demoButtonFunction} id="demoButton">Demo</span>
       </>
     );
   }
