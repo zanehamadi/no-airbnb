@@ -72,7 +72,7 @@ module.exports = {
       },
       {
         email: 'starman@galacticmail.com',
-        username: 'Starman',
+        username: 'starman',
         hashedPassword: bcrypt.hashSync('password')
       }
     ], {});
