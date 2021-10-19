@@ -30,22 +30,25 @@ function LoginFormPage() {
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
+      <label className="loginLabel">
         Username or Email
         <input
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
+          className="inputArea"
         />
       </label>
-      <label>
+      <label className="loginLabel">
         Password
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="inputArea"
+          id="loginPassArea"
         />
       </label>
       <button type="submit" className="submitLogButton">Log In</button>
