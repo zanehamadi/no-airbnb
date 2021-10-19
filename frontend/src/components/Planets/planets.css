@@ -3,10 +3,26 @@
 }
 
 .planetContainer{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-content: space-between;
 }
 
 .planetPageContainer{
     height: 100vh;
-    display: grid;
-    grid-column: 33% 33% 33%;
+}
+
+#planetPagePlanetName{
+    text-align: center;
+}
+
+.specPlanetDiv{
+    width: 200px;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+}
+
+#planetPageHeader{
+    margin-top: 3vh;
+    margin-bottom: 2vh;
 }
