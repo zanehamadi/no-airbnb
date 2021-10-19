@@ -15,9 +15,7 @@ export default function  Home(){
 
     let welcomeMessage = (() => {
         const message = ['Welcome back, Starman.', `Welcome back, ${user?.username}.`]
-
-        if (randNum < 24) return message[1]
-        else return message[0]
+        return message[1]
     })()
 
 
@@ -35,9 +33,9 @@ export default function  Home(){
                 </> 
                 : 
                 <>
-                <h1>no airbnb</h1>
-                <Link to={'/signup'}><div className="logoutBut">create an account</div></Link>
-                <Link to={'/login'}><div className="logoutBut">sign in</div></Link>
+                    <h1>no airbnb</h1>
+                    <Link to={'/signup'}><div className="logoutBut">create an account</div></Link>
+                    <Link to={'/login'}><div className="logoutBut">sign in</div></Link>
                 </>}
         </>
     )

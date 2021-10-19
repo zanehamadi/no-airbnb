@@ -69,6 +69,11 @@ module.exports = {
         email: 'ceebs@galacticmail.com',
         username: 'ceebs',
         hashedPassword: bcrypt.hashSync(faker.internet.password())
+      },
+      {
+        email: 'starman@galacticmail.com',
+        username: 'Starman',
+        hashedPassword: bcrypt.hashSync('password')
       }
     ], {});
   },

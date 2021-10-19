@@ -14,7 +14,7 @@ function Navigation({ isLoaded, planets}){
   if (sessionUser) {
     sessionLinks = (
       <>
-      <ProfileButton user={sessionUser} />
+        <ProfileButton user={sessionUser} />
       </>
     );
   } else {
