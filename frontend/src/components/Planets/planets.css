@@ -26,3 +26,8 @@
     margin-top: 3vh;
     margin-bottom: 2vh;
 }
+
+.planetImg:hover{
+    border: 3px solid rgb(139, 139, 139);
+    box-shadow: 10px 0px 100px rgb(139, 139, 139);;
+}

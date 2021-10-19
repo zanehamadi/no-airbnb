@@ -3,7 +3,6 @@ import "./planets.css"
 
 
 export default function Planets({planets}){
-    console.log(planets)
 
 
     return(
@@ -13,7 +12,7 @@ export default function Planets({planets}){
                 {planets.map(planet => 
                     <div key={planet.id} className="specPlanetDiv">
                         <Link to={`/planets/${planet.id}`} key={planet.id} className="planetsResults">
-                        <img src={planet?.imgUrl}/> 
+                        <img src={planet?.imgUrl} className="planetImg"/> 
                         <h3 id="planetPagePlanetName"> {planet.name} </h3>
                         </Link>
                     </div>)}
