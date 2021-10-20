@@ -26,14 +26,12 @@ export default function  Home(){
         <>
             {user ? 
                 <>
-                    <h1>no airbnb</h1>
                     <h2>{`${welcomeMessage}`}</h2>
                     <span><Link to={`/users/${user?.id}`} id="homeButton">Visit Profile</Link></span>
                     <h2>Explore the stars</h2>
                 </> 
                 : 
                 <>
-                    <h1>no airbnb</h1>
                     <Link to={'/signup'}><div className="logoutBut">create an account</div></Link>
                     <Link to={'/login'}><div className="logoutBut">sign in</div></Link>
                 </>}

@@ -39,23 +39,11 @@ function Navigation({ isLoaded, planets}){
 
   return (
         <div className="navDiv">
-          <NavLink exact to="/"><div className="homeClick">Home </div> </NavLink>
-          {id ? 
-            <>
-              <NavLink to={`/users/${id}`}>
-              <div className="homeClick">
-                Profile
-              </div>
-              </NavLink>
-            </> 
-            :
-             <></>}
-            <NavLink to={'/planets'}>
-            <div className="homeClick">
+          <img src="https://i.imgur.com/GJ2lBHG.gif" id="logoImg" to="/"/>
+          <NavLink to={'/planets'}>
               All Planets
-              </div>
-            </NavLink>
-          {isLoaded && sessionLinks}
+          </NavLink>
+          <div>{isLoaded && sessionLinks}</div>
         </div>
   );
 }

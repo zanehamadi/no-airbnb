@@ -1,11 +1,8 @@
 .navDiv{
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 50% 50%;
     margin-top: 2vh;
-    padding-bottom: 1vh;
-    border-bottom: 1px solid white;
-
-    
+    margin-bottom: 3vh;
 }
 
 .homeClick{
@@ -49,6 +46,14 @@ button{
     cursor:pointer;
     color: rgb(185, 185, 185);
 
+}
+
+#logoImg{
+    position: relative;
+    height: 2.5vh;
+    border: none;
+    width: 8vw;
+    left: 0px;
 }
 
 
