@@ -1,0 +1,46 @@
+.footer-images{
+    background-color: transparent;
+    height: 100%;
+    z-index: 3;
+}
+.footer{
+    height: var(--footer-height);
+    position: fixed;
+    bottom: 0px;
+    width: 50vw;
+    background: transparent;
+    display: flex;
+    justify-content:space-evenly;
+    border-top: 1px solid whitesmoke;
+    backdrop-filter: blur(50px);
+    background-color: rgba(0, 0, 0, 0.876);
+    align-items: center;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-top: 10%;
+    z-index: 2;
+
+}
+
+.navIcons{
+    color: white;
+}
+
+.navIcons:hover{
+    color: gray;
+    transition: color .59s;
+}
+
+#aboutUs{
+    text-decoration: none;
+    font-size: 40px;
+    color: whitesmoke;
+    text-shadow: 2px 2px black;
+}
+
+#aboutUs:hover{
+
+    color: rgb(209, 92, 75);
+    transition: color .59s;
+}

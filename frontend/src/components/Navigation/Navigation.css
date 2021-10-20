@@ -1,6 +1,11 @@
 .navDiv{
     display: flex;
     justify-content: space-around;
+    margin-top: 2vh;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid white;
+
+    
 }
 
 .homeClick{
@@ -24,12 +29,26 @@ button{
     right: 0px;
     list-style-type: none;
     text-align:right;
-    top: 10px;
+    top: 20px;
+
+}
+
+.profile-dropdown button{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    margin-top: 0.5vh;
 }
 
 
 .fa-user-astronaut:hover{
     cursor: pointer;
+}
+
+#demoButton:hover{
+    cursor:pointer;
+    color: rgb(185, 185, 185);
+
 }
 
 

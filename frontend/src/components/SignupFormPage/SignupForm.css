@@ -1,6 +1,8 @@
 .logForm{
     display: flex;
     flex-direction: column;
+    height: 20vh;
+    width: 50vw;
 }
 
 .submitLog:hover{
@@ -16,5 +18,28 @@
 }
 
 #signUp{
-    width: 10%;
+    width: fit-content;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+#signUp:hover{
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: 1px solid black;
+    transition: all .2s;
+}
+
+.signupLabel{
+    align-self:flex-start;
+}
+
+.signupInput{
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }

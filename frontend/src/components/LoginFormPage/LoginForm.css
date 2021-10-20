@@ -1,17 +1,42 @@
 .logForm{
     display: flex;
     flex-direction: column;
+    height: 20vh;
+    width: 50vw;
 }
 
 .submitLogButton{
     width: fit-content;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
 }
 
 .submitLogButton:hover{
     cursor: pointer;
-    background-color: rgb(216, 216, 216);
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: 1px solid black;
+    transition: all .2s;
 }
 
 input{
     margin-left: .5em;
+}
+
+.inputArea{
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+
+}
+
+#loginPassArea{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+
+.loginLabel{
+    align-self:flex-start;
 }

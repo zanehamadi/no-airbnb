@@ -1,3 +1,37 @@
 .planetsResults:hover{
     background-color: rgb(42, 42, 42);
 }
+
+.planetContainer{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-content:space-evenly;
+    width: 100%;
+    padding-bottom: 10vh;
+}
+
+.planetPageContainer{
+    height: 100vh;
+    width: 58vw;
+}
+
+#planetPagePlanetName{
+    text-align: center;
+}
+
+.specPlanetDiv{
+    width: 200px;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+}
+
+#planetPageHeader{
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+}
+
+.planetImg:hover{
+    border: 3px solid rgb(139, 139, 139);
+    box-shadow: 10px 0px 100px rgb(139, 139, 139);
+    transition: all .3s;
+}
