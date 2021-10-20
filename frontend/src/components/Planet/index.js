@@ -239,7 +239,7 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
 
     return(
 
-        <>
+        <div className="specPlanetPage">
         {
         planet ?
         <>
@@ -308,7 +308,7 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
                 <span onClick={ratingHandler}><i className="far fa-star" id="4star"></i></span>
                 <span onClick={ratingHandler}><i className="far fa-star" id="5star"></i></span>
                 </span>
-                <textarea value={description} onChange={e => setDescription(e.target.value)}></textarea>
+                <textarea value={description} id="textAreaPlanet" onChange={e => setDescription(e.target.value)}></textarea>
                 <button disabled={reviewValidations.length > 0}>Post</button>
             </form>
         </div>)}
@@ -320,6 +320,6 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
         <button onClick={historyRedirect}>Return Home.</button>
         </>
         }
-        </>
+        </div>
     )
 }

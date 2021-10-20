@@ -64,3 +64,12 @@ img{
 /* #randMsg{
     font-style: italic;
 } */
+
+.specPlanetPage{
+    padding-bottom: 8vh;
+}
+
+#textAreaPlanet{
+    height: 5vh;
+    resize: vertical;
+}
