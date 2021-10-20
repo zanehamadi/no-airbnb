@@ -29,7 +29,15 @@ button{
     right: 0px;
     list-style-type: none;
     text-align:right;
-    top: 10px;
+    top: 20px;
+
+}
+
+.profile-dropdown button{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    margin-top: 0.5vh;
 }
 
 

@@ -6,12 +6,12 @@ import { destroyAReview } from "../../store/reviews";
 import { destroyABooking } from "../../store/bookings";
 import "./user.css"
 
-export default function User({planets, bookings, reviews, users}){
+export default function User({planets, bookings, reviews, user}){
     
     const session = useSelector(state => state.session);
     const loggedUser = session.user ? session.user : ''
     const {id} = useParams()
-    const user = users?.find(specUser => +specUser.id === +id)
+    // const user = users?.find(specUser => +specUser.id === +id)
     const yourprofile = session?.user ? +user?.id === +session?.user.id : false 
     const dispatch = useDispatch()
 

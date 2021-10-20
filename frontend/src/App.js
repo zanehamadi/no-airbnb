@@ -15,13 +15,15 @@ import { getUsers } from "./store/users"
 import { getSolarSystems } from "./store/solarSystems"
 import {getReviews} from "./store/reviews"
 import { getBookings } from "./store/bookings";
+import Footer from "./components/Footer";
 
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const user = useSelector(state => state.session.user)
 
-  useEffect(() => {
+  useEffect(() =>  {
       dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
       dispatch(getPlanets()); 
       dispatch(getUsers()); 
@@ -50,30 +52,33 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} users={users}/>
       {isLoaded && (
-        <Switch>
-          <Route exact path='/'>
-            <Home/>
-            <Search solarSystems={solarSystems} planets={planets} bookings={bookings}/>
-          </Route>
-          <Route exact path={`/users/:id`}>
-            <User users={users} planets={planets} bookings={bookings} reviews={reviews}/> 
-          </Route> 
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/planets">
-            <Planets planets={planets}/>
-          </Route>
-          <Route path='/planets/:id'>
-            <Planet planets={planets} users={users} solarSystems={solarSystems} reviews={reviews} bookings={bookings}/>
-          </Route>
-          <Route>
-            404 Not Found
-          </Route>
-        </Switch>
+        <>
+          <Switch>
+            <Route exact path='/'>
+              <Home/>
+              <Search solarSystems={solarSystems} planets={planets} bookings={bookings}/>
+            </Route>
+            <Route exact path={`/users/:id`}>
+              <User user={user} planets={planets} bookings={bookings} reviews={reviews}/> 
+            </Route> 
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route exact path="/planets">
+              <Planets planets={planets}/>
+            </Route>
+            <Route path='/planets/:id'>
+              <Planet planets={planets} users={users} solarSystems={solarSystems} reviews={reviews} bookings={bookings}/>
+            </Route>
+            <Route>
+              404 Not Found
+            </Route>
+          </Switch>
+        <Footer/>
+      </>
       )}
     </>
   );
