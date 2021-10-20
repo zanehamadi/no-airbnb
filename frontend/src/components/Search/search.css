@@ -78,9 +78,9 @@
 }
 
 .searchContainer{
-    margin-top: 5vh;
     display: flex;
     flex-direction: column;
+    margin-top: 1vh;
     align-items:flex-start;
     justify-content: space-between
 }

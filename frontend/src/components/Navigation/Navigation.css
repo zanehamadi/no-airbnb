@@ -1,8 +1,10 @@
 .navDiv{
     display: grid;
     grid-template-columns: 50% 50%;
+    grid-template-areas: "nav-links nav-auth";
     margin-top: 2vh;
     margin-bottom: 3vh;
+
 }
 
 .homeClick{
@@ -55,6 +57,22 @@ button{
     width: 8vw;
     left: 0px;
 }
+
+.nav-links-div{
+    grid-area: nav-links;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-auth{
+    grid-area: nav-auth;
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: flex-end;
+    
+    
+}
+
 
 
 

@@ -19,32 +19,34 @@ function Navigation({ isLoaded, planets}){
     return dispatch(sessionActions.login({credential, password}))
   }
 
-
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <>
-        <ProfileButton user={sessionUser} />
-      </>
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <NavLink to="/login"><div className="homeClick">Log In</div></NavLink>
-        <NavLink to="/signup"><div className="homeClick">Sign Up </div></NavLink>
-        <span onClick={demoButtonFunction} id="demoButton">Demo</span>
-      </>
-    );
-  }
-
+  // <ProfileButton user={sessionUser} />
+  // <NavLink to="/login"><div className="homeClick">Log In</div></NavLink>
+  // <NavLink to="/signup"><div className="homeClick">Sign Up </div></NavLink>
+  // <span onClick={demoButtonFunction} id="demoButton">Demo</span>
   return (
-        <div className="navDiv">
-          <img src="https://i.imgur.com/GJ2lBHG.gif" id="logoImg" to="/"/>
-          <NavLink to={'/planets'}>
+    <nav className="navDiv">
+        <div className="nav-links-div">
+          <img src="https://i.imgur.com/GJ2lBHG.gif" id="logoImg"/>
+          <NavLink to={'/planets'} className="homeClick">
               All Planets
           </NavLink>
-          <div>{isLoaded && sessionLinks}</div>
         </div>
+        <div className="nav-auth">
+          {id ? 
+            <>
+              <ProfileButton user={sessionUser}/>
+            </>
+
+            :
+        
+            <>
+              <NavLink to="/login"><div className="homeClick">Log In</div></NavLink>
+              <NavLink to="/signup"><div className="homeClick">Sign Up </div></NavLink>
+              <span onClick={demoButtonFunction} id="demoButton" className="homeClick">Demo</span>
+            </>        
+        }
+        </div>
+    </nav>
   );
 }
 

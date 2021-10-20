@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <span onClick={openMenu}>
+      <span onClick={openMenu} id="profileButton">
         <i className="fas fa-user-astronaut" />
       </span>
       {showMenu && (
