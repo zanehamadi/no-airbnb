@@ -58,6 +58,10 @@ button{
     left: 0px;
 }
 
+#logoImg:hover{
+    cursor: pointer;
+}
+
 .nav-links-div{
     grid-area: nav-links;
     display: flex;
