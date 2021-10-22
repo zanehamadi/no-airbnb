@@ -29,7 +29,7 @@ function Navigation({ isLoaded, planets}){
         <div className="nav-links-div">
           <img src="https://i.imgur.com/GJ2lBHG.gif" id="logoImg" onClick={homeImgFunc}/>
           <NavLink to={'/planets'} className="homeClick">
-              All Planets
+              Planets
           </NavLink>
         </div>
         <div className="nav-auth">

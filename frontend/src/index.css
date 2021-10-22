@@ -42,28 +42,27 @@ button{
         margin-left: 0px
     }
     nav.navDiv{
-        width: 100vw;
+        width: 100%;
         display: grid;
         height: 5vh;
         top: 0; 
         left: 0;
         z-index: 4;
+        border-bottom: 1px solid white;
 
     }
     div#root h1{
-        margin-top: 10vh;
+        margin-top: 2vh;
     }
     body{
         padding: 0px;
-        width: 91.5vw;
-        margin-left: 3.5vw;
-        margin-right: 5vw;
-        margin-top: 0px;
     }
     div.nav-auth{
+        display: flex;
+        padding-right: 5vw;
+        /* justify-content: space-around; */
         background-color: black;
         margin: 0;
-        padding-right: 5vw;
 
     }
     div.nav-links-div{
@@ -71,7 +70,8 @@ button{
         flex-direction: row;
         background-color: black;
         margin: 0;
-        padding-left: 5vw;
+        padding-left: 0vw;
+        justify-content: space-between;
 
     }
 
@@ -80,10 +80,29 @@ button{
     }
 
     a.homeClick{
-        width: 80px;
-
+        width: 100px;
+        height: 15px;
+        margin:0;
+        padding:0;
     }
-
+    ul.profile-dropdown{
+        margin-right: 0px;
+        padding-right: 0px;
+        right: 0;
+        /* border-right: 1px solid white; */
+        padding-right: 5px;
+        position:absolute;
+        margin-bottom: 20px;
+    }
+    div#root{
+        width: 100vw;
+    }
+    footer.footer {
+        width: 100%;
+    }
+    form#searchForm {
+        margin-left: 13px;
+    }
 
 
 }
