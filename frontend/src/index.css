@@ -14,7 +14,6 @@ body{
     margin: 0;
     /* background-color: black;
     color: white; */
-    /* background-color: aliceblue; */
     background-color: black;
     color: white;
 }
@@ -32,6 +31,61 @@ button{
 
 *{
     font-family: monospace;
+}
+
+
+@media all and (max-width: 500px){
+    img#logoImg{
+        /* display: none; */
+        width: 93px;
+        align-self: flex-start;
+        margin-left: 0px
+    }
+    nav.navDiv{
+        width: 100vw;
+        display: grid;
+        height: 5vh;
+        top: 0; 
+        left: 0;
+        z-index: 4;
+
+    }
+    div#root h1{
+        margin-top: 10vh;
+    }
+    body{
+        padding: 0px;
+        width: 91.5vw;
+        margin-left: 3.5vw;
+        margin-right: 5vw;
+        margin-top: 0px;
+    }
+    div.nav-auth{
+        background-color: black;
+        margin: 0;
+        padding-right: 5vw;
+
+    }
+    div.nav-links-div{
+        display:flex;
+        flex-direction: row;
+        background-color: black;
+        margin: 0;
+        padding-left: 5vw;
+
+    }
+
+    div.homeClick{
+        width: 80px;
+    }
+
+    a.homeClick{
+        width: 80px;
+
+    }
+
+
+
 }
 
 
