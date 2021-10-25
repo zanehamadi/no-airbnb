@@ -89,7 +89,6 @@ button{
         margin-right: 0px;
         padding-right: 0px;
         right: 0;
-        /* border-right: 1px solid white; */
         padding-right: 5px;
         position:absolute;
         margin-bottom: 20px;
@@ -102,8 +101,61 @@ button{
     }
     form#searchForm {
         margin-left: 13px;
+        width: 350px;
+        margin-right: 13px;
+    }
+    body h1{
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
+    body h2{
+        margin-left: 15px;
+    }
+    div.specPlanetPage{
+        margin-left: 10vw;
+        margin-right: 10vw;
+        display:flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+    }
+    div.reviewBlock{
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+    div#reviewPlanetForm{
+        margin-top: 8vh;
+    }
+    form.reviewForm{
+
+        margin-bottom: 6vh;
+    }
+    div.reviewStars.reviewContent{
+        margin-top: 2vh;
+    }
+
+    h3#revHeader{
+        margin-top: 5vh;
+    }
+
+    div.searchResults{
+        padding-bottom: 8vh;
+    }
+
+    div.planetContainer{
+        display: grid;
+        grid-template-columns: 100%;
+        width: 100vw;
+        margin: 0;
+        justify-items: center;
+    }
+    h2#planetPageHeader{
+        width: 80vw;
+        margin: 10vw 10vw 10vw;
+        text-align: center;
+    }
+    
 
 }
 

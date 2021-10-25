@@ -267,7 +267,7 @@ export default function Planet({planets, users, solarSystems, reviews, bookings}
             </>}   
        
         {userId && (
-            <div>
+            <div id="reviewPlanetForm">
                 <form onSubmit={submitBookingFunc}>
                     <h3>Book a date</h3>
                     <Calendar value={date} onChange={setDate} selectRange={true}/>
