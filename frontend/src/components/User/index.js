@@ -114,11 +114,11 @@ export default function User({planets, bookings, reviews, user}){
     
     return(
 
-        <div>
+        <div className="profileDiv">
             <h2>{`${user?.username}'s profile`}</h2>
             {userReviews ? 
-            <div>
-                <h3>Reviews</h3>
+            <div className="reviewBox">
+                <h3 id="reviewHeader">Reviews</h3>
                 {userReviews.map(review => 
                 <div className="specUserRev">
                 <div className="specUserRevDesc">{`"${review.description}"`}</div>
@@ -136,7 +136,7 @@ export default function User({planets, bookings, reviews, user}){
                     <h3>Bookings</h3>
                     { userBookings?.map(booking => 
                     <>
-                        <div> 
+                        <div className="bookingDivContainer"> 
                             <Link to={`/planets/${booking.planetId}`}>{booking.planet}</Link>{` on ${booking.startDate} to ${booking.endDate}`}
                             <button id="deleteBooking" onClick={() => deleteBookingFunc(booking.id)}>delete</button>
                         </div>

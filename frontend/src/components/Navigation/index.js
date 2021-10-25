@@ -7,7 +7,7 @@ import * as sessionActions from '../../store/session';
 
 
 
-function Navigation({ isLoaded, planets}){
+function Navigation({ isLoaded, planets, user}){
   const sessionUser = useSelector(state => state.session.user);
   const session = useSelector(state => state.session);
   const id = session.user ? session.user.id : ''
@@ -24,6 +24,12 @@ function Navigation({ isLoaded, planets}){
     history.push('/')
   }
 
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    history.push('/')
+  };
+
   return (
     <nav className="navDiv">
         <div className="nav-links-div">
@@ -36,6 +42,10 @@ function Navigation({ isLoaded, planets}){
           {id ? 
             <>
               <ProfileButton user={sessionUser}/>
+              <NavLink class="mobileProfileButton" to={`/users/${user?.id}`}>
+               Visit Profile
+            </NavLink>
+            <a onClick={logout} class="mobileProfileButton" id="logOutMobile">Log Out</a>
             </>
 
             :

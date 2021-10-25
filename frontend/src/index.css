@@ -8,6 +8,7 @@
     
 }
 
+
 body{
     padding: 0 25%;
     /* padding-bottom: 25%; */
@@ -31,6 +32,10 @@ button{
 
 *{
     font-family: monospace;
+}
+
+.mobileProfileButton{
+    display: none;
 }
 
 
@@ -85,13 +90,17 @@ button{
         margin:0;
         padding:0;
     }
-    ul.profile-dropdown{
-        margin-right: 0px;
-        padding-right: 0px;
-        right: 0;
-        padding-right: 5px;
-        position:absolute;
-        margin-bottom: 20px;
+    a.homeClick:hover{
+        background-color: transparent;
+    }
+
+    div.homeClick:hover{
+        background-color: transparent;
+        
+    }
+
+    span#demoButton.homeClick:hover{
+        background-color: transparent;
     }
     div#root{
         width: 100vw;
@@ -121,14 +130,13 @@ button{
         align-items: center;
     }
     div.reviewBlock{
-        margin-top: 5vh;
-        margin-bottom: 5vh;
+        margin: 5vh 10vw 5vh;
+        width: 80vw;
     }
     div#reviewPlanetForm{
         margin-top: 8vh;
     }
     form.reviewForm{
-
         margin-bottom: 6vh;
     }
     div.reviewStars.reviewContent{
@@ -155,6 +163,81 @@ button{
         margin: 10vw 10vw 10vw;
         text-align: center;
     }
+    div.reviewContent{
+        font-size: 12pt;
+    }
+    div.reviewStars{
+        font-size: 9pt;   
+        margin-top: 0px;
+    }
+    h4.postedLine.reviewContent{
+        font-size: 9pt;   
+
+    }
+
+    div.profileDiv{
+        display:flex;
+        flex-direction: column;
+        /* justify-content: center; */
+    }
+
+    div.profileDiv h2{
+        align-self: center;
+    }
+    div.profileDiv h3{
+        align-self: center;
+    }
+    ul.profile-dropdown{
+        display: none;   
+    }
+    i.fa-user-astronaut{
+        display: none;
+    }
+    .mobileProfileButton{
+        display: inline;
+
+    }
+
+    #logOutMobile{
+        margin-left: 20px;
+    }
+
+    div.specUserRev{
+        margin-left: 20px;
+    }
+
+    #reviewHeader{
+        align-self: center;
+    }
+
+    .reviewBox{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #deleteBooking{
+        margin-bottom: 2vh;
+    }
+    .bookingDivContainer{
+        margin-left: 20px;
+    }
+
+    .logForm{
+        margin-left: 100px;
+        margin-top: 80px;
+    }
+    .submitLogButton{
+        align-self: center;
+    }
+    .loginLabel{
+        margin-left: 10px;
+
+    }
+
+    .navIcons{
+        font-size: 30pt;
+    }
+
     
 
 }
